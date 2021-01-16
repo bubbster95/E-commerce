@@ -12,27 +12,17 @@ const config = {
     appId: "1:300331957580:web:def105896d8e1c5d09a3e9",
     measurementId: "G-ZP0DFGV3YW"
   };
+// Initialize Firebase
+firebase.initializeApp(config);
+firebase.analytics();
 
-
-// export const storage = firebase.storage()
-
-export const getImageFromStore = async (image, divId) => {
-  let gsReference = firebase.storage().refFromURL('gs://e-commerce-697c4.appspot.com')
+export const getImageFromStore = async (divId, bucket, image) => {
+  let gsReference = firebase.storage().refFromURL(bucket)
 
   gsReference.child(image).getDownloadURL().then(function(url) {
-    // `url` is the download URL for 'images/stars.jpg'
-  
-    // This can be downloaded directly:
-    var xhr = new XMLHttpRequest();
-    xhr.responseType = 'blob';
-    // xhr.onload = function(event) {
-    //   var blob = xhr.response;
-    // };
-    xhr.open('GET', url);
-    xhr.send();
-  
+
     // Or inserted into an <img> element:
-    var img = document.getElementById(divId);
+    let img = document.getElementById(divId);
     img.src = url;
   }).catch(function(error) {
 
@@ -44,10 +34,6 @@ export const getImageFromStore = async (image, divId) => {
       case 'storage/unauthorized':
         // User doesn't have permission to access the object
         break;
-  
-      case 'storage/canceled':
-        // User canceled the upload
-        break;
 
       case 'storage/unknown':
         // Unknown error occurred, inspect the server response
@@ -57,6 +43,21 @@ export const getImageFromStore = async (image, divId) => {
     }
   });
 } 
+
+export const productInfo = async () => {
+  let products = firestore.doc(`products/e6KdQuiqvS6t9fAj0hZT`)
+  let productInfo;
+  await products
+    .get()
+    .then(function(doc) {
+      if (doc.exists) {
+        productInfo = doc.data()
+      } else {
+        console.log('No such document')
+      }
+  })
+  return productInfo
+}
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if(!userAuth) return;
@@ -83,10 +84,6 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 
   return userRef
 }
-
-// Initialize Firebase
-firebase.initializeApp(config);
-firebase.analytics();
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
