@@ -32,7 +32,7 @@ class Shop extends React.Component {
         let object = this.state.object;
         let keys = Object.keys(object);
         let listItmes = keys.map(item => {
-            let thisItem = this.state.object[item]
+            let thisItem = object[item]
             return <Item
                 key={item}
                 skew={item}
@@ -40,6 +40,8 @@ class Shop extends React.Component {
                 type={thisItem['type']}
                 description={thisItem['description']}
                 price={thisItem['pice']}
+                image={thisItem['url']['image']}
+                bucket={thisItem['url']['bucket']}
             />
         })
         return <div>{listItmes}</div>

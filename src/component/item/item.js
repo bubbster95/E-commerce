@@ -1,6 +1,6 @@
 import React from 'react';
 
-// import {getImageFromStore} from '../../firebase'
+import {getImageFromStore} from '../../firebase'
 
 class Item extends React.Component {
     constructor(props) {
@@ -11,19 +11,22 @@ class Item extends React.Component {
             title: this.props.title,
             description: this.props.description,
             price: this.props.price,
-            tags: 'This is where tags go.'
+            tags: 'This is where tags go.',
+            image: this.props.image,
+            bucket: this.props.bucket
         }
     }
 
-    // getImage = () => {
-    //     getImageFromStore('myimg', 'gs://e-commerce-697c4.appspot.com', 'LayoutResume.jpg')
-    // }
+    getImage = () => {
+        console.log(this.state.skew, this.state.image, this.state.bucket)
+        getImageFromStore(this.state.skew, this.state.bucket, this.state.image)
+    }
 
     render() {
         return (
             <div className='item-container' key={this.state.skew} >
                 <div className='image-container'>
-                    <img id={this.state.skew} alt={this.state.title}/>
+                    <img id={this.state.skew} alt={this.state.title} onLoad={this.getImage()}/>
                 </div>
                 <div className='info-container'>
                     <h2>{this.state.title}</h2>
