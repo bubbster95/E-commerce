@@ -1,6 +1,5 @@
 import React from 'react';
-
-import {getImageFromStore} from '../../firebase';
+import {getImageFromStore, productInfo} from '../../firebase';
 
 class ItemPage extends React.Component {
     constructor(props) {
@@ -8,30 +7,42 @@ class ItemPage extends React.Component {
 
         this.state = {
             skew: this.props.skew,
-            title: this.props.title,
-            description: this.props.description,
-            price: this.props.price,
-            tags: 'This is where tags go.',
-            image: this.props.image,
-            bucket: this.props.bucket
+            object: {}
+        }
+
+        this.getInfo = async () =>{
+            let productObject = await productInfo(this.state.skew)
+            this.setState({
+                object: productObject
+            })
+
+            this.getImage()
         }
     }
 
+    componentDidMount() {
+        this.getInfo()
+    }
+
     getImage = () => {
-        getImageFromStore(this.state.skew, this.state.bucket, this.state.image)
+        getImageFromStore(
+            this.state.skew,
+            this.state.object['url']['bucket'],
+            this.state.object['url']['image']
+        )
     }
 
     render() {
         return (
-            <div className='item-container' key={this.state.skew} >
-                <div className='image-container'>
-                    <img className='product-image' id={this.state.skew} alt={this.state.title} onLoad={this.getImage()}/>
+            <div className='item-page-container' key={this.state.skew} >
+                <div className='image-page-container'>
+                    <img className='product-page-image' id={this.state.skew} alt={this.state.object['title']}/>
                 </div>
-                <div className='info-container'>
-                    <h2>{this.state.title}</h2>
-                    <span>{this.state.description}</span>
-                    <span>${this.state.price}</span>
-                    <span>{this.state.tags}</span>
+                <div className='info-page-container'>
+                    <h2>{this.state.object['title']}</h2>
+                    <span>{this.state.object['description']}</span>
+                    <span>${this.state.object['price']}</span>
+                    <span>{this.state.object['tags']}</span>
                 </div>
             </div>
         )

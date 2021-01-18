@@ -32,12 +32,10 @@ class Shop extends React.Component {
         let listItmes = keys.map(item => {
             let thisItem = object[item]
             return <Item
+                setSkew= {this.props.setSkew}
                 key={item}
                 skew={item}
                 title={thisItem['title']}
-                // type={thisItem['type']}
-                // description={thisItem['description']}
-                // price={thisItem['price']}
                 image={thisItem['url']['image']}
                 bucket={thisItem['url']['bucket']}
             />

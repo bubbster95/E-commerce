@@ -20,7 +20,6 @@ export const getImageFromStore = async (divId, bucket, image) => {
   let gsReference = firebase.storage().refFromURL(bucket)
 
   gsReference.child(image).getDownloadURL().then(function(url) {
-
     // Or inserted into an <img> element:
     let img = document.getElementById(divId);
     img.src = url;
@@ -44,14 +43,18 @@ export const getImageFromStore = async (divId, bucket, image) => {
   });
 } 
 
-export const productInfo = async () => {
+export const productInfo = async (skew) => {
   let products = firestore.doc(`products/e6KdQuiqvS6t9fAj0hZT`)
   let productInfo;
   await products
     .get()
     .then(function(doc) {
       if (doc.exists) {
-        productInfo = doc.data()
+        if (skew) {
+          productInfo = doc.data()[skew]
+        } else {
+          productInfo = doc.data()
+        }
       } else {
         console.log('No such document')
       }
