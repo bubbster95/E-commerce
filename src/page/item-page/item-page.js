@@ -2,20 +2,7 @@ import React from 'react';
 
 import {getImageFromStore} from '../../firebase';
 
-import './item.css';
-
-import {
-    Switch,
-    Route,
-    Link
-  } from "react-router-dom";
-
-import ItemPage from '../../page/item-page/item-page'
-
-
-
-
-class Item extends React.Component {
+class ItemPage extends React.Component {
     constructor(props) {
         super(props)
 
@@ -31,7 +18,6 @@ class Item extends React.Component {
     }
 
     getImage = () => {
-        console.log(this.state.skew, this.state.image, this.state.bucket)
         getImageFromStore(this.state.skew, this.state.bucket, this.state.image)
     }
 
@@ -43,24 +29,13 @@ class Item extends React.Component {
                 </div>
                 <div className='info-container'>
                     <h2>{this.state.title}</h2>
+                    <span>{this.state.description}</span>
+                    <span>${this.state.price}</span>
+                    <span>{this.state.tags}</span>
                 </div>
-                <Link to={'/shop/' + this.state.skew}>Item Link</Link>
-                <Switch>
-                    <Route exact path={'/shop/' + this.state.skew}>
-                        <ItemPage
-                            skew={this.state.skew}
-                            title={this.state.title}
-                            type={this.state.type}
-                            description={this.state.description}
-                            price={this.state.price}
-                            image={this.state.image}
-                            bucket={this.state.bucket}
-                        />
-                    </Route> 
-                </Switch>
             </div>
         )
     }
 }
 
-export default Item;
+export default ItemPage;

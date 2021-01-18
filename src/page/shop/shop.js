@@ -2,6 +2,8 @@ import React from 'react';
 
 import { productInfo } from '../../firebase'
 
+import './shop.css';
+
 import Item from '../../component/item/item';
 
 class Shop extends React.Component {
@@ -24,10 +26,6 @@ class Shop extends React.Component {
         this.loadKeys()
     }
 
-    componentDidUpdate() {
-        // this.populatePage()
-    }
-
     populatePage = () => {
         let object = this.state.object;
         let keys = Object.keys(object);
@@ -37,20 +35,22 @@ class Shop extends React.Component {
                 key={item}
                 skew={item}
                 title={thisItem['title']}
-                type={thisItem['type']}
-                description={thisItem['description']}
-                price={thisItem['pice']}
+                // type={thisItem['type']}
+                // description={thisItem['description']}
+                // price={thisItem['price']}
                 image={thisItem['url']['image']}
                 bucket={thisItem['url']['bucket']}
             />
         })
-        return <div>{listItmes}</div>
+        return <div className='items-list'>{listItmes}</div>
     }
 
     render() {
         return (
             <div className="page">
-                <div id='items-list'>{this.populatePage()}</div>
+                <div className='items-container'>
+                    {this.populatePage()}
+                </div>
             </div>
         )
     }

@@ -48,11 +48,11 @@ const Nav = ({currentUser}) => (
         </nav>
 
         <Switch>
-        <Route exact path="/about" component={About} />
-        <Route exact path="/shop" component={Shop} />
-        <Route exact path="/cart" component={Cart} />
-        <Route exact path="/sign-in-sign-up" component={SignInSignUp} />
-        <Route exact path="/" component={Home} />
+            <Route exact path="/about" component={About} />
+            <Route exact path="/shop" component={Shop} />
+            <Route exact path="/cart" component={Cart} />
+            <Route exact path="/sign-in-sign-up" component={SignInSignUp} />
+            <Route exact path="/" component={Home} />
         </Switch>
     </div>
 )
