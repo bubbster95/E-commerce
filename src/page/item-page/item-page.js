@@ -25,6 +25,7 @@ class ItemPage extends React.Component {
     }
 
     getImage = () => {
+        console.log(this.state.object)
         getImageFromStore(
             this.state.skew,
             this.state.object['url']['bucket'],
@@ -34,15 +35,17 @@ class ItemPage extends React.Component {
 
     render() {
         return (
-            <div className='item-page-container' key={this.state.skew} >
-                <div className='image-page-container'>
-                    <img className='product-page-image' id={this.state.skew} alt={this.state.object['title']}/>
-                </div>
-                <div className='info-page-container'>
-                    <h2>{this.state.object['title']}</h2>
-                    <span>{this.state.object['description']}</span>
-                    <span>${this.state.object['price']}</span>
-                    <span>{this.state.object['tags']}</span>
+            <div className='page'>
+                <div className='item-page-container' key={this.state.skew} >
+                    <div className='image-page-container'>
+                        <img className='product-page-image' id={this.state.skew} alt={this.state.object['title']}/>
+                    </div>
+                    <div className='info-page-container'>
+                        <h2>{this.state.object['title']}</h2>
+                        <span>{this.state.object['description']}</span>
+                        <span>${this.state.object['price']}</span>
+                        <span>{this.state.object['tags']}</span>
+                    </div>
                 </div>
             </div>
         )

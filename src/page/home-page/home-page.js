@@ -18,12 +18,21 @@ class HomePage extends React.Component {
 
         this.state = {
             currentUser: null,
-            skew: null
+            skew: null,
+            path: null
         }
 
         this.setSkew = (newSkew) => {
+            console.log(newSkew)
             this.setState({
-                    skew: newSkew
+                skew: newSkew
+            });
+        }
+
+        this.setPath = (newPath) => {
+            console.log(newPath)
+            this.setState({
+                path: newPath
             });
         }
     }
@@ -60,14 +69,19 @@ class HomePage extends React.Component {
             <Nav currentUser={this.state.currentUser} />
             <Switch>
                 <Route exact path="/about" component={About} />
+
                 <Route exact path="/shop" >
-                    <Shop setSkew={this.setSkew}/>
+                    <Shop setPath={this.setPath} setSkew={this.setSkew}/>
                 </Route>
-                <Route exact path="/cart" component={Cart} />
-                <Route exact path="/sign-in-sign-up" component={SignInSignUp} />
+                <Route exact path={this.state.path}>
+                    <Shop setPath={this.setPath} setSkew={this.setSkew} type={this.state.skew} />
+                </Route> 
                 <Route exact path={'/shop/' + this.state.skew}>
                     <ItemPage skew={this.state.skew} />
                 </Route> 
+
+                <Route exact path="/cart" component={Cart} />
+                <Route exact path="/sign-in-sign-up" component={SignInSignUp} />
                 <Route exact path="/" component={Home} />
             </Switch>
         </div>;
