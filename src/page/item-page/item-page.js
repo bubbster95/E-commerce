@@ -25,7 +25,6 @@ class ItemPage extends React.Component {
     }
 
     getImage = () => {
-        console.log(this.state.object)
         getImageFromStore(
             this.state.skew,
             this.state.object['url']['bucket'],

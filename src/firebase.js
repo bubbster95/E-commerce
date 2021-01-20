@@ -43,6 +43,25 @@ export const getImageFromStore = async (divId, bucket, image) => {
   });
 } 
 
+export const categories = async (skew) => {
+  let category = firestore.doc(`categories/LjDayMEFWras6WWmdWJ7`)
+  let categories;
+  await category
+    .get()
+    .then(function(doc) {
+      if (doc.exists) {
+        if (skew) {
+          categories = doc.data()[skew]
+        } else {
+          categories = doc.data()
+        }
+      } else {
+        console.log('No such document')
+      }
+  })
+  return categories
+}
+
 export const productInfo = async (skew) => {
   let products = firestore.doc(`products/e6KdQuiqvS6t9fAj0hZT`)
   let productInfo;

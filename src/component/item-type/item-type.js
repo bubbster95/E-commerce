@@ -9,32 +9,21 @@ import {
   } from "react-router-dom";
 
 class ItemType extends React.Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            skew: this.props.skew,
-            title: this.props.type,
-            image: this.props.image,
-            bucket: this.props.bucket
-        }
-    }
-
     getImage = () => {
-        getImageFromStore(this.state.skew, this.state.bucket, this.state.image)
+        getImageFromStore(this.props.skew, this.props.bucket, this.props.image)
     }
 
     sendPath = () => {
-        console.log('sending path', this.props)
-        this.props.setSkew(this.props.skew)
+        console.log('fired click')
         this.props.setPath(this.props.path)
+        this.props.setSkew(this.props.skew)
     }
 
     render() {
         return (
-            <div className='item-container' key={this.state.skew} >
+            <div className='item-container' key={this.props.skew} >
                 <div className='image-container'>
-                    <img className='product-image' id={this.state.skew} alt={this.state.title} onLoad={this.getImage()}/>
+                    <img className='product-image' id={this.props.skew} alt={this.props.title} onLoad={this.getImage()}/>
                 </div>
                 <div className='info-container'>
                     <Link

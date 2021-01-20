@@ -12,18 +12,11 @@ const Nav = ({currentUser}) => (
         <nav className="nav-container">
         <ul>
             <li>
-                <Link className="link" to="/">Home</Link>
+                <Link className="link" to="/">Shop</Link>
             </li>
             <li>
                 <Link className="link" to="/about">About</Link>
             </li>
-            <li>
-                <Link className="link" to="/shop">Shop</Link>
-            </li>
-            <li>
-                <Link className="link" to="/cart"><CartIcon /></Link>
-            </li>
-
             {
                 currentUser ?
                 <li>
@@ -34,6 +27,10 @@ const Nav = ({currentUser}) => (
                     <Link className="link" to="/sign-in-sign-up">Sign In</Link>
                 </li>
             }
+            
+            <li>
+                <Link className="link" to="/cart"><CartIcon /></Link>
+            </li>
         </ul>
         </nav>
     </div>
