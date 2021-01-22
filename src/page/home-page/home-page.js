@@ -64,21 +64,25 @@ class HomePage extends React.Component {
     }
 
 
+    renderItemPage = (routerProps) => {
+        let skew = routerProps.match.params.skew
+        return <ItemPage skew={skew} />
+    }
+
+    renderCategoryPage = (routerProps) => {
+        let path = routerProps.match.params.path
+        return <CategoryPage type={path}/>
+    }
 
     render() {
-        console.log('homepaget path', this.state.path)
         return <div className='home-page'>
             <Nav currentUser={this.state.currentUser} />
             <Switch>
                 <Route exact path="/about" component={About} />
 
-                <Route exact path={'/' + this.state.path}>
-                    <CategoryPage setPath={this.setPath} setSkew={this.setSkew} type={this.state.skew} />
-                </Route> 
+                <Route exact path={'/:path'} render={this.renderCategoryPage}/>
 
-                <Route exact path={'/' + this.state.path + '/' + this.state.skew}>
-                    <ItemPage skew={this.state.skew} />
-                </Route> 
+                <Route exact path={`/:path/:skew`} render={this.renderItemPage} />
 
                 <Route exact path="/cart" component={Cart} />
 

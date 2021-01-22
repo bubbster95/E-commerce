@@ -14,11 +14,6 @@ class Item extends React.Component {
         getImageFromStore(this.props.skew, this.props.bucket, this.props.image)
     }
 
-    sendSkew = () => {
-        this.props.setSkew(this.props.skew)
-        this.props.setPath(this.props.path)
-    }
-
     render() {
         return (
             <div className='item-container' key={this.props.skew} >
@@ -26,7 +21,7 @@ class Item extends React.Component {
                     <img className='product-image' id={this.props.skew} alt={this.props.title} onLoad={this.getImage()}/>
                 </div>
                 <div className='info-container'>
-                    <Link to={this.props.path + '/' + this.props.skew} onClick={this.sendSkew}>
+                    <Link to={this.props.path + '/' + this.props.skew}>
                         <h2>{this.props.title}</h2>
                     </Link> 
                 </div>

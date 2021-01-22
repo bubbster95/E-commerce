@@ -43,10 +43,7 @@ class CategoryPage extends React.Component {
 
             for (let i=0; i < tagsItemHas.length; i++) {
                 if (tagsToLookFor.includes(tagsItemHas[i]) && !skew.includes(item)) {
-                    console.log('look trhough', tagsToLookFor,'for:', tagsItemHas[i])
                     skew.push(item)
-                } else {
-                    console.log('This list', tagsToLookFor,'didnt have:', tagsItemHas[i])
                 }
             }
             return skew
@@ -55,9 +52,7 @@ class CategoryPage extends React.Component {
         let list = skew.map(item => {
             let thisItem = object[item]
                 return <Item
-                    setSkew= {this.props.setSkew}
-                    setPath= {this.props.setPath}
-                    path={type + '/'}
+                    path={this.props.type}
                     key={item}
                     skew={item}
                     title={thisItem['title']}

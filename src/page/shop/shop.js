@@ -34,8 +34,6 @@ class Shop extends React.Component {
         let list = keys.map(item => {
             let thisItem = object[item]
             return <ItemType
-                setPath={this.props.setPath}
-                setSkew={this.props.setSkew}
                 path={item}
                 key={item}
                 skew={item}
