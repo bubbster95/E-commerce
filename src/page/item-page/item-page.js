@@ -3,6 +3,8 @@ import {getImageFromStore, productInfo} from '../../firebase';
 
 import './item-page.css'
 
+import QtyCounter from '../../component/qty-counter/qty-counter'
+
 class ItemPage extends React.Component {
     constructor(props) {
         super(props)
@@ -34,7 +36,8 @@ class ItemPage extends React.Component {
     }
 
     addToCart = () => {
-        let quantity = parseInt(document.getElementsByClassName('item-quantity')[0].value);
+        let quantity = parseInt(document.getElementsByClassName('item-quantity')[0].innerHTML);
+        console.log(quantity, 'quan')
         if (isNaN(quantity)) {
             quantity = 1
         }
@@ -56,10 +59,7 @@ class ItemPage extends React.Component {
                     <div className='info-page-container'>
                         <h2 className='item-title'>{this.state.object['title']}</h2>
                         <p className='item-price'>${this.state.object['price']}</p>
-                        <div>
-                            <span>Quantity</span>
-                            <input className='item-quantity' type="number" placeholder='1'/>
-                        </div>
+                        <QtyCounter skew={this.props.skew} />
                         <button className='add-to-cart' onClick={this.addToCart}>Add To Cart</button>
                         <button className='clear-cart' onClick={this.clearCart}>Clear Cart</button>
 
