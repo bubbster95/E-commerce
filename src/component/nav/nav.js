@@ -7,7 +7,7 @@ import CartIcon from '../cart-icon/cart-icon'
 import './nav.css'
 
 
-const Nav = ({currentUser}) => (
+const Nav = ({currentUser, count}) => (
     <div>
         <nav className="nav-container">
         <ul>
@@ -29,7 +29,7 @@ const Nav = ({currentUser}) => (
             }
             
             <li>
-                <Link className="link" to="/cart"><CartIcon /></Link>
+                <Link className="link" to="/cart"><CartIcon count={count}/></Link>
             </li>
         </ul>
         </nav>

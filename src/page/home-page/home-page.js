@@ -21,21 +21,20 @@ class HomePage extends React.Component {
 
         this.state = {
             currentUser: null,
-            skew: null,
-            path: null
+            count: 0
         }
 
-        this.setSkew = (newSkew) => {
-            this.setState({
-                skew: newSkew
-            });
+        this.updateCount = () => {
+            this.setState({count: 0})
+            let storeKeys = Object.keys(localStorage)
+
+            let reduced = 0;
+            storeKeys.map(item => {
+                return reduced += parseInt(localStorage[item])
+            })
+            this.setState({ count: reduced })
         }
 
-        this.setPath = (newPath) => {
-            this.setState({
-                path: newPath
-            });
-        }
     }
 
     unsubscribeFromAuth = null;
@@ -57,16 +56,16 @@ class HomePage extends React.Component {
                 this.setState({currentUser: userAuth});
             }
         });
+        this.updateCount();
     }
 
     componentWillUnmount() {
         this.unsubscribeFromAuth()
     }
 
-
     renderItemPage = (routerProps) => {
         let skew = routerProps.match.params.skew
-        return <ItemPage skew={skew} />
+        return <ItemPage skew={skew} updateCount={this.updateCount} />
     }
 
     renderCategoryPage = (routerProps) => {
@@ -76,20 +75,22 @@ class HomePage extends React.Component {
 
     render() {
         return <div className='home-page'>
-            <Nav currentUser={this.state.currentUser} />
+            <Nav currentUser={this.state.currentUser} count={this.state.count} />
             <Switch>
-                <Route exact path="/about" component={About} />
+                <Route exact path="/about"component={About} />
+
+                <Route exact path="/cart" >
+                    <Cart updateCount={this.updateCount}/>
+                </Route>
+
+                <Route exact path="/sign-in-sign-up" component={SignInSignUp} />
 
                 <Route exact path={'/:path'} render={this.renderCategoryPage}/>
 
                 <Route exact path={`/:path/:skew`} render={this.renderItemPage} />
 
-                <Route exact path="/cart" component={Cart} />
-
-                <Route exact path="/sign-in-sign-up" component={SignInSignUp} />
-
                 <Route exact path="/" >
-                    <Shop setPath={this.setPath} setSkew={this.setSkew}/>
+                    <Shop />
                 </Route>
             </Switch>
         </div>;
