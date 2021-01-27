@@ -8,32 +8,30 @@ import './nav.css'
 
 
 const Nav = ({currentUser, count}) => (
-    <div>
-        <nav className="nav-container">
-        <ul>
+    <nav className="nav-container">
+    <ul>
+        <li>
+            <Link className="link" to="/">Shop</Link>
+        </li>
+        <li>
+            <Link className="link" to="/about">About</Link>
+        </li>
+        {
+            currentUser ?
             <li>
-                <Link className="link" to="/">Shop</Link>
+                <Link className="link" to="/" onClick={() => auth.signOut()}>Sign Out</Link>
             </li>
+            :
             <li>
-                <Link className="link" to="/about">About</Link>
+                <Link className="link" to="/sign-in-sign-up">Sign In</Link>
             </li>
-            {
-                currentUser ?
-                <li>
-                    <Link className="link" to="/" onClick={() => auth.signOut()}>Sign Out</Link>
-                </li>
-                :
-                <li>
-                    <Link className="link" to="/sign-in-sign-up">Sign In</Link>
-                </li>
-            }
-            
-            <li>
-                <Link className="link" to="/cart"><CartIcon count={count}/></Link>
-            </li>
-        </ul>
-        </nav>
-    </div>
+        }
+        
+        <li>
+            <Link className="link" to="/cart"><CartIcon count={count}/></Link>
+        </li>
+    </ul>
+    </nav>
 )
 
 

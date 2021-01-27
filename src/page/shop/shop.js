@@ -5,6 +5,7 @@ import { categories } from '../../firebase'
 import './shop.css';
 
 import ItemType from '../../component/item-type/item-type'
+import HeroImage from '../../component/hero-image/hero-image'
 
 class Shop extends React.Component {
     constructor(props) {
@@ -48,6 +49,7 @@ class Shop extends React.Component {
     render() {
         return (
             <div className="page">
+                <HeroImage />
                 <div className='items-container'>
                     {this.filterItems()}
                 </div>

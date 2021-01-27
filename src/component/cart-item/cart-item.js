@@ -31,7 +31,7 @@ class CartItem extends React.Component {
         getImageFromStore(
             this.props.skew,
             this.state.object['url']['bucket'],
-            this.state.object['url']['image']
+            this.state.object['url']['image'] + '_0.jpeg'
         )
     }
 

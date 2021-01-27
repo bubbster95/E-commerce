@@ -15,6 +15,32 @@ const config = {
 // Initialize Firebase
 firebase.initializeApp(config);
 firebase.analytics();
+export const getBGImageFromStore = async (divId, bucket, image) => {
+  let gsReference = firebase.storage().refFromURL(bucket)
+
+  gsReference.child(image).getDownloadURL().then(function(url) {
+    // Inserted into an <img> element:
+    let img = document.getElementById(divId);
+    img.style.backgroundImage = `url(${url}`;
+  }).catch(function(error) {
+
+    switch (error.code) {
+      case 'storage/object-not-found':
+        // File doesn't exist
+        break;
+  
+      case 'storage/unauthorized':
+        // User doesn't have permission to access the object
+        break;
+
+      case 'storage/unknown':
+        // Unknown error occurred, inspect the server response
+        break;
+
+      default:
+    }
+  });
+} 
 
 export const getImageFromStore = async (divId, bucket, image) => {
   let gsReference = firebase.storage().refFromURL(bucket)

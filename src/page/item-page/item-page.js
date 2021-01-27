@@ -40,7 +40,7 @@ class ItemPage extends React.Component {
 
     render() {
         return (
-            <div className='page'>
+            <div className='item-page'>
                 <div className='item-page-container' key={this.props.skew} >
                     <ItemImage skew={this.props.skew} object={this.state.object}/>
                     <div className='info-page-container'>

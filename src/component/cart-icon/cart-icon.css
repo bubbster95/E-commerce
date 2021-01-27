@@ -12,9 +12,9 @@
 
 .item-count {
     position: absolute;
-    background-color:rgb(40, 50, 40);
+    background-image: linear-gradient(to bottom,rgb(40, 50, 40) 0%, rgb(40, 50, 40, .5) 50%, rgba(0, 0, 0, 0.01) 100%);
     top: -8px;
     left: 40%;
     font-size: 14pt;
-    border-radius: 20px;
+    border-radius: 20%;
 }

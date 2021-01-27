@@ -1,0 +1,23 @@
+.hero-container {
+    background-image: linear-gradient(to bottom, rgb(48, 48, 48)50%, rgba(255, 255, 255, 0) 100%);
+    border-bottom: black 2px;
+}
+
+.hero-image {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 300px;
+    opacity: 75%;
+    background-position: left;
+    background-size: cover;
+    animation: scroll 30s;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
+
+@keyframes scroll {
+    0% { background-position-x: left;}
+    100% { background-position-x: right;}
+}

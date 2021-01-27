@@ -11,7 +11,7 @@ import {
 class Item extends React.Component {
 
     getImage = () => {
-        getImageFromStore(this.props.skew, this.props.bucket, this.props.image)
+        getImageFromStore(this.props.skew, this.props.bucket, this.props.image + '_0.jpeg')
     }
 
     render() {

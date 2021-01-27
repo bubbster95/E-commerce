@@ -5,9 +5,15 @@
 }
 
 .page {
+    top: 300px;
+}
+
+.item-page {
+    top: 100px;
+}
+
+.item-page, .page {
     position: relative;
-    background-color: #f8f4e5;
-    top: 50px;
     margin: auto;
     width: 100vw;
     height: 100vh;
