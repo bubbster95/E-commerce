@@ -20,7 +20,7 @@ export const getImageFromStore = async (divId, bucket, image) => {
   let gsReference = firebase.storage().refFromURL(bucket)
 
   gsReference.child(image).getDownloadURL().then(function(url) {
-    // Or inserted into an <img> element:
+    // Inserted into an <img> element:
     let img = document.getElementById(divId);
     img.src = url;
   }).catch(function(error) {
