@@ -60,8 +60,8 @@ class SignIn extends React.Component {
                         required
                      />
 
-                    <input type="submit" value="submit Form" />
-                    <input onClick={signInWithGoogle} type="button" value="Sign In With Google"/>
+                    <input className='submit' type="submit" value="submit Form" />
+                    <input className='submit google-sign-in' onClick={signInWithGoogle} type="button" value="Sign In With Google"/>
                 </form>
             </div>
         )

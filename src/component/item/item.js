@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {getImageFromStore} from '../../firebase';
+import {getBGImageFromStore} from '../../firebase';
 
 import './item.css';
 
@@ -11,21 +11,21 @@ import {
 class Item extends React.Component {
 
     getImage = () => {
-        getImageFromStore(this.props.skew, this.props.bucket, this.props.image + '_0.jpeg')
+        getBGImageFromStore(this.props.skew, this.props.bucket, this.props.image + '_0.jpeg')
     }
 
     render() {
         return (
-            <div className='item-container' key={this.props.skew} >
-                <div className='image-container'>
-                    <img className='product-image' id={this.props.skew} alt={this.props.title} onLoad={this.getImage()}/>
+            <Link to={this.props.path + '/' + this.props.skew}>
+                <div className='item-container' key={this.props.skew} >
+                    <div className='image-container'>
+                        <div className='product-image' id={this.props.skew} alt={this.props.title} onLoad={this.getImage()}/>
+                    </div>
+                    <div className='info-container'>
+                            <h2>{this.props.title}</h2> 
+                    </div>
                 </div>
-                <div className='info-container'>
-                    <Link to={this.props.path + '/' + this.props.skew}>
-                        <h2>{this.props.title}</h2>
-                    </Link> 
-                </div>
-            </div>
+            </Link>
         )
     }
 }

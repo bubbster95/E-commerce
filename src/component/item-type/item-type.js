@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {getImageFromStore} from '../../firebase';
+import {getBGImageFromStore} from '../../firebase';
 
 import './item-type.css';
 
@@ -10,21 +10,22 @@ import {
 
 class ItemType extends React.Component {
     getImage = () => {
-        getImageFromStore(this.props.skew, this.props.bucket, this.props.image)
+        console.log(this.props.skew, this.props.image, this.props.bucket)
+        getBGImageFromStore(this.props.skew, this.props.bucket, this.props.image)
     }
 
     render() {
         return (
-            <div className='item-container' key={this.props.skew} >
-                <div className='image-container'>
-                    <img className='product-image' id={this.props.skew} alt={this.props.title} onLoad={this.getImage()}/>
+            <Link to={this.props.path}>
+                <div className='type-container' key={this.props.skew} >
+                    <div className='type-image-container'>
+                        <div className='type-image' id={this.props.skew} alt={this.props.title} onLoad={this.getImage()}/>
+                    </div>
+                    <div className='type-info-container'>
+                        <h2 className='title'>{this.props.title}</h2>
+                    </div>
                 </div>
-                <div className='info-container'>
-                    <Link to={this.props.path}>
-                        <h2>{this.props.title}</h2>
-                    </Link> 
-                </div>
-            </div>
+            </Link> 
         )
     }
 }

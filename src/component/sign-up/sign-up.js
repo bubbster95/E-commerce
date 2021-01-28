@@ -98,7 +98,7 @@ class SignUp extends React.Component {
                     >
                     </input>
 
-                    <input type="submit" value="Sign Up" onClick={this.handleSubmit}/>
+                    <input className='submit' type="submit" value="Sign Up" onClick={this.handleSubmit}/>
                 </form>
             </div>
         )

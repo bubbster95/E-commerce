@@ -8,7 +8,7 @@ import './sign-in-sign-up.css'
 class SignInSignUp extends React.Component {
     render() {
         return(
-            <div className="page sign-in-sign-up">
+            <div className="sign-in-sign-up">
                 <SignIn />
                 <SignUp />
             </div>
