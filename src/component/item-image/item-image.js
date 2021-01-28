@@ -2,7 +2,7 @@ import React from 'react';
 
 import './item-image.css'
 
-import {getImageFromStore, productInfo} from '../../firebase';
+import {getBGImageFromStore, productInfo} from '../../firebase';
 
 class ItemImage extends React.Component {
 constructor(props) {
@@ -25,49 +25,54 @@ constructor(props) {
 
     componentDidMount() { this.getInfo() }
 
-    getImage = (skew, filePath) => {
-        getImageFromStore(
-            this.props.skew,
-            this.state.object['url']['bucket'],
-            filePath
-        )
+    hover = (state) => {
+        let thumbs = document.getElementsByClassName('thumbs-wrapper')[0]
+        if (state === 'over') {
+            thumbs.className = 'thumbs-wrapper enter'
+        } else {
+            thumbs.className = 'thumbs-wrapper'
+        }
     }
 
     renderImages = () => { 
         let imageCount = this.state.object['url']['count'];
-        let carosel = document.getElementById('image-page-container');
 
-        let dots = document.createElement('DIV');
-        dots.className = 'dots-wrapper'
-        carosel.appendChild(dots);
+        let carosel = document.getElementById('image-page-container');
+        carosel.addEventListener('mouseover', () => this.hover('over'))
+        carosel.addEventListener('mouseleave', () => this.hover())
+
+        let thumbs = document.createElement('DIV');
+        thumbs.className = 'thumbs-wrapper'
 
 
         for (let i=0; i < imageCount; i++) {
-            let image = document.createElement('IMG');
+            let image = document.createElement('DIV');
             image.className = 'page-image';
             image.id = `${this.props.skew}-${i}`
             image.alt = `${this.state.object['title']}`
             carosel.appendChild(image)
 
-            getImageFromStore(
+            getBGImageFromStore(
                 `${this.props.skew}-${i}`,
                 this.state.object['url']['bucket'],
-                `${this.state.object['url']['image']}_${i}.jpeg`
+                `${this.state.object["url"]["image"]}_${i}.jpeg`,
+                `${this.props.skew}-${i}-thumb`
             )
 
-            let dot = document.createElement('DIV');
-            dot.className = 'image-dot';
-            dot.id = `dot-${this.props.skew}-${i}`
-            dot.addEventListener('click', () => this.changeSlide(`${this.props.skew}-${i}`))
-            dots.appendChild(dot)
+            let thumb = document.createElement('DIV');
+            thumb.className = 'image-thumb';
+            thumb.id = `${this.props.skew}-${i}-thumb`
+            thumb.addEventListener('click', () => this.changeSlide(`${this.props.skew}-${i}`))
+            thumbs.appendChild(thumb)
         }
         this.changeSlide(`${this.props.skew}-${0}`)
+        carosel.appendChild(thumbs);
     }
 
     changeSlide(image) {
         let thisImage = document.getElementById(image)
         let oldImages = document.getElementsByClassName('visible')
-        console.log(oldImages)
+        
         if (oldImages.length >= 1) {
             let oldImageKeys = Object.keys(oldImages)
             oldImageKeys.map(image => {

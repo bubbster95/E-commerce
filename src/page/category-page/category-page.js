@@ -56,6 +56,8 @@ class CategoryPage extends React.Component {
                     path={this.props.type}
                     key={item}
                     skew={item}
+                    price={thisItem['price']}
+                    sub={thisItem['sub']}
                     title={thisItem['title']}
                     image={thisItem['url']['image']}
                     bucket={thisItem['url']['bucket']}
@@ -67,7 +69,7 @@ class CategoryPage extends React.Component {
     render() {
             return (
                 <div className="page">
-                    <HeroImage />
+                    <HeroImage page={this.props.type}/>
                     <div className='items-container'>
                         {this.filterItems(this.props.type)}
                     </div>

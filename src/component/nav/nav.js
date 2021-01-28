@@ -11,7 +11,9 @@ const Nav = ({currentUser, count}) => (
     <nav className="nav-container">
     <ul>
         <li>
-            <Link className="link" to="/">Shop</Link>
+            <Link className="link" to="/">
+                <div className='logo' alt='base weight logo' style={{backgroundImage: 'url("/assets/base-weight-logo.png")'}}></div>
+            </Link>
         </li>
         <li>
             <Link className="link" to="/about">About</Link>
@@ -27,7 +29,7 @@ const Nav = ({currentUser, count}) => (
             </li>
         }
         
-        <li>
+        <li className='cart'>
             <Link className="link" to="/cart"><CartIcon count={count}/></Link>
         </li>
     </ul>

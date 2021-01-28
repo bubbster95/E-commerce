@@ -15,13 +15,18 @@ const config = {
 // Initialize Firebase
 firebase.initializeApp(config);
 firebase.analytics();
-export const getBGImageFromStore = async (divId, bucket, image) => {
+export const getBGImageFromStore = async (divId, bucket, image, thumb) => {
   let gsReference = firebase.storage().refFromURL(bucket)
 
   gsReference.child(image).getDownloadURL().then(function(url) {
     // Inserted into an <img> element:
     let img = document.getElementById(divId);
     img.style.backgroundImage = `url(${url}`;
+
+    if (thumb) {
+      let thumbNail = document.getElementById(thumb) 
+      thumbNail.style.backgroundImage = `url(${url}`;
+    }
   }).catch(function(error) {
 
     switch (error.code) {

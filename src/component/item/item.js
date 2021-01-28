@@ -23,6 +23,8 @@ class Item extends React.Component {
                     </div>
                     <div className='info-container'>
                             <h2>{this.props.title}</h2> 
+                            <h3>{this.props.sub}</h3>
+                            <p className='price'>{this.props.price}</p>
                     </div>
                 </div>
             </Link>

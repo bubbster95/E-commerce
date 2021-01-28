@@ -10,7 +10,6 @@ import {
 
 class ItemType extends React.Component {
     getImage = () => {
-        console.log(this.props.skew, this.props.image, this.props.bucket)
         getBGImageFromStore(this.props.skew, this.props.bucket, this.props.image)
     }
 

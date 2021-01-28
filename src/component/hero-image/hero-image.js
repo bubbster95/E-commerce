@@ -21,11 +21,20 @@ class HeroImage extends React.Component {
 
 
     render() {
-        return(
-            <div className='hero-container'>
-                <div className='hero-image' id='hero-image' alt='Beautiful vista of the wilderness.'></div>
-            </div>
-        )
+        if (this.props.page) {
+            return(
+                <div className='hero-container'>
+                    <div className='hero-page-title'>{this.props.page}</div>
+                    <div className='hero-image' id='hero-image' alt='Beautiful vista of the wilderness.'></div>
+                </div>
+            )
+        } else {
+            return(
+                <div className='hero-container'>
+                    <div className='hero-image' id='hero-image' alt='Beautiful vista of the wilderness.'></div>
+                </div>
+            )
+        }
     }
 }
 
