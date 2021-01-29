@@ -1,0 +1,31 @@
+.qty-counter {
+    display: inline;
+    align-items: center;
+}
+
+.qty-text {
+    display: inline;
+    font-size: 15pt;
+    font-weight: 500;
+}
+
+.qty-arrow {
+    display: inline;
+    margin: 10px;
+    height: 30px;
+    width: 30px;
+    font-size: larger;
+    font-weight: 900;
+    background-color: transparent;
+    border: solid 2pt rgba(60, 60, 60, .5);
+}
+.qty-arrow:hover {
+    color: rgba(60, 60, 60, .5);
+    border-color: black;
+}
+
+.item-quantity {
+    display: inline;
+    font-size: 15pt;
+    font-weight: 500;
+}

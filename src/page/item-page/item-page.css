@@ -1,6 +1,8 @@
 .item-page-container {
     margin: auto;
     width: 90%;
+    background-color: white;
+    padding-bottom: 20px;
 }
 
 
@@ -14,4 +16,24 @@
 
 .item-price {
     font-size: 20pt;
+    margin: 0;
+}
+
+.add-to-cart {
+    margin: auto;
+    margin-left: 20px;
+    display: inline;
+    padding: 10px;
+    background-color: transparent;
+    font-weight: 900;
+    border: solid 2px rgba(60, 60, 60, .5);
+}
+
+.add-to-cart:hover {
+    color: rgba(60, 60, 60, .5);
+    border-color: black;
+}
+
+.qty {
+    display: inline;
 }

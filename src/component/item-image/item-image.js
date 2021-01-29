@@ -9,7 +9,8 @@ constructor(props) {
     super(props)
 
     this.state = {
-        object: {}
+        object: {},
+        tab: false
     }
 
     this.getInfo = async () =>{

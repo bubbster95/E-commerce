@@ -1,0 +1,24 @@
+.cart-page {
+    position: relative;
+    top: 80px;
+}
+
+.cart-controls {
+    margin: auto;
+    margin-left: 20px;
+    display: inline;
+    padding: 10px;
+    background-color: transparent;
+    font-weight: 900;
+    border: solid 2px rgba(60, 60, 60, .5);
+    background-color: white;
+}
+
+.cart-controls:hover {
+    color: rgba(60, 60, 60, .5);
+    border-color: black;
+}
+
+.empty-cart {
+    text-align: center;
+}

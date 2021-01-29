@@ -30,7 +30,7 @@
 .info-container {
     position: relative;
     top: -20px;
-    background: rgba(255, 255, 255, 0.5);
+    background: linear-gradient(to bottom, white, rgba(255, 255, 255, 0.3));
     width: 60vw;
     margin: auto;
     text-align: center;
@@ -57,5 +57,6 @@ h3 {
 }
 
 .price {
+    font-size: large;
     padding-bottom: 20px;
 }

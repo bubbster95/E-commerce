@@ -10,8 +10,8 @@
     flex-direction: column;
     width: 60vw;
     margin: 40px auto;
-    background-image: linear-gradient(to bottom, rgb(255, 255, 255), rgba(2, 54, 9, 0.116));
-    border: outset white 2px;
+    background-color: white;
+    border: solid black 2px;
 }
 
 .title {
@@ -26,12 +26,18 @@
 
 input {
     margin: 10px;
+    background-color: white;
+    border: solid black 1px;
 }
 
 .submit {
     padding: 10px;
     border-radius: 3px;
-    border-width: 1px;
+    border: solid 2px rgba(60, 60, 60, .5);
+}
+
+.submit:hover {
+    border-color: black;
 }
 
 .google-sign-in {

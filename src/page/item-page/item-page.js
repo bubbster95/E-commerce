@@ -45,9 +45,15 @@ class ItemPage extends React.Component {
                     <ItemImage skew={this.props.skew} object={this.state.object}/>
                     <div className='info-page-container'>
                         <h2 className='item-title'>{this.state.object['title']}</h2>
+
+                        <h3 className='item-sub'>{this.state.object['sub']}</h3>
+
                         <p className='item-price'>${this.state.object['price']}</p>
-                        <QtyCounter skew={this.props.skew} />
-                        <button className='add-to-cart' onClick={this.addToCart}>Add To Cart</button>
+                        
+                        <div className='add-qty'>
+                            <QtyCounter className='qty-counter' skew={this.props.skew} />
+                            <button className='add-to-cart' onClick={this.addToCart}>Add To Cart</button>
+                        </div>
 
                         <p className='item-description'>{this.state.object['description']}</p>
                     </div>

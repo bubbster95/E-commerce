@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './qty-counter.css';
+
 
 class QtyCounter extends React.Component {
 
@@ -10,11 +12,13 @@ class QtyCounter extends React.Component {
         if (this.props.updateCount) {
             if (itemCount >= 1) {
                 localStorage[this.props.skew] = parseInt(itemCount) + add
+                this.props.cartTotal(this.props.price, this.props.skew, add)
             } else if (add === 1) {
                 localStorage[this.props.skew] = parseInt(itemCount) + add
+                this.props.cartTotal(this.props.price, this.props.skew, add)
             }
             this.props.updateCount()
-            
+   
         } else {
             if (quantity.innerHTML >= 1) {
                 quantity.innerHTML = parseInt(quantity.innerHTML) + add
@@ -35,11 +39,11 @@ class QtyCounter extends React.Component {
     render() {
         return(
             <div className='qty'>
-            <p>Qty: </p>
+            <p className='qty-text'>Qty: </p>
                 <span>
-                    <button onClick={() => this.changeQty(-1)}>{'<'}</button>
-                    <span className='item-quantity'>{this.checkQty()}</span>
-                    <button onClick={() => this.changeQty(1)}>{'>'}</button>
+                    <button className='qty-arrow' onClick={() => this.changeQty(-1)}>{'-'}</button>
+                    <div className='item-quantity'>{this.checkQty()}</div>
+                    <button className='qty-arrow' onClick={() => this.changeQty(1)}>{'+'}</button>
                 </span>
             </div>
         )
