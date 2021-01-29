@@ -9,16 +9,33 @@ class Cart extends React.Component {
         super(props)
 
         this.state = {
-            storeKeys: Object.keys(localStorage),
+            object: {},
             total: 0
         }
-    }
-    cartItems = () => {
 
-        return this.state.storeKeys.map(item => {
+
+
+    }
+
+    updateObject = (skew, newObject) => {
+        this.setState((state) => ({
+            object: {...state.object, [skew]: newObject}
+        }))
+    }
+
+    componentDidUpdate() {
+        console.log(this.state.object)
+    }
+    
+    cartItems = () => {
+        let storeKeys = Object.keys(localStorage)
+
+        return storeKeys.map(item => {
+
             return <CartItem
                 skew={item}
                 updateCount={this.props.updateCount}
+                updateObject={this.updateObject}
                 cartTotal={this.cartTotal}
                 quantity={localStorage[item]}
                 key={item}
@@ -26,8 +43,42 @@ class Cart extends React.Component {
         })
     }
 
+    componentDidMount() {
+        this.populateCheckOut()
+    }
+
+    populateCheckOut = () => {
+        let cartPage = document.getElementsByClassName('cart-page')[0];
+        let popUp = document.createElement('DIV');
+        popUp.className = 'cart-check-out'
+        cartPage.appendChild(popUp)
+
+        let storeKeys = Object.keys(localStorage)
+
+        storeKeys.map(async item => {
+            console.log(this.state.object[item])
+            let itemWrap = document.createElement('DIV');
+            itemWrap.className = 'check-out-item';
+            itemWrap.key=`check-out-${item}`;
+            popUp.appendChild(itemWrap)
+
+            let image = document.createElement('DIV');
+            image.className = 'check-out-image';
+            image.id = `check-out-${item}`;
+            itemWrap.appendChild(image)
+
+            let textBox = document.createElement('DIV');
+            textBox.className = 'check-out-text-box';
+            itemWrap.appendChild(textBox);
+
+            await this.state.object[item]
+            let title = document.createElement('H2');
+            title.innerHTML = `${this.state.object[item]}`
+            return null
+        })
+    }
+
     cartTotal = (price, skew, add) => {
-        console.log('updated price')
         if (add) {
             let newTotal = this.state.total + (price * add)
             this.setState({
@@ -44,21 +95,6 @@ class Cart extends React.Component {
     clearCart = () => {
         localStorage.clear()
         this.props.updateCount()
-    }
-
-    checkOut = () => {
-        let cartPage = document.getElementsByClassName('cart-page')[0];
-        let popUp = document.createElement('DIV');
-        popUp.className = 'cart-check-out'
-        cartPage.appendChild(popUp)
-
-        this.state.storeKeys.map(item => {
-            let checkOut = document.createElement('DIV');
-            checkOut.className = 'check-out-item';
-            checkOut.id = `check-out-${item}`;
-            checkOut.key=`check-out-${item}`;
-            return cartPage.appendChild(checkOut)
-        })
     }
 
     render() {

@@ -1,11 +1,13 @@
 .cart-icon {
     position: relative;
     height: 20px;
+    display: flex;
     background-color: transparent;
+    justify-content: center;
 }
 
 .cart-icon-image {
-    width: 30px;
+    width: 35px;
     height: 30px;
     margin: auto;
 }
@@ -13,7 +15,6 @@
 .item-count {
     position: absolute;
     top: -8px;
-    left: 30%;
     font-size: 14pt;
     border-radius: 20%;
 }

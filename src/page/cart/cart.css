@@ -19,6 +19,40 @@
     border-color: black;
 }
 
+.cart-total {
+    width: 89vw;
+    background-color: white;
+    border: solid 2px black;
+    margin: auto;
+    padding: 1vw;
+    margin-bottom: 20px;
+}
+
 .empty-cart {
     text-align: center;
+}
+
+.cart-check-out {
+    position: fixed;
+    top: 70px;
+    background-color: white;
+    width: 100vw;
+    height: 100vh;
+}
+
+.check-out-item {
+    background-color: blue;
+    border: solid 2px black;
+    width: 90vw;
+    height: 100px;
+    margin: 20px;
+}
+
+.check-out-image {
+    width: 30%;
+    height:100%;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: white;
 }

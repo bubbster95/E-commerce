@@ -20,12 +20,14 @@ class CartItem extends React.Component {
             })
 
             this.getImage()
+            this.props.updateObject(this.props.skew, this.state.object)
             this.props.cartTotal(this.state.object['price'], this.props.skew)
         }
     }
 
     componentDidMount() {
         this.getInfo()
+
     }
 
     getImage = () => {
@@ -33,14 +35,13 @@ class CartItem extends React.Component {
             this.props.skew,
             this.state.object['url']['bucket'],
             this.state.object['url']['image'] + '_0.jpeg',
-            `check-out-item-${this.props.skew}`
+            `check-out-${this.props.skew}`
         )
     }
 
     removeItem = () => {
         localStorage.removeItem(this.props.skew)
         this.props.updateCount()
-        this.props.cartTotal(0, this.props.skew)
     }
 
     render() {

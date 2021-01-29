@@ -7,7 +7,6 @@ import { getBGImageFromStore } from '../../firebase'
 class HeroImage extends React.Component {
     componentDidMount() {
         let image = ['kenneth-hargrave-GjsWjLCIh5I-unsplash.jpg', 'intricate-explorer-idfytKeoD0s-unsplash.jpg', 'thomas-galler-IvtbiWEVa-4-unsplash.jpg', 'ugur-peker-9Wuxjit62QU-unsplash.jpg', 'ugur-peker-9Wuxjit62QU-unsplash.jpg']
-        console.log(this.diceRoll(image)) 
         getBGImageFromStore(
             'hero-image',
             'gs://e-commerce-697c4.appspot.com',
