@@ -13,6 +13,7 @@ class CartItem extends React.Component {
             object: {}
         }
 
+        // sets object to specific item info, and updates, cart total, as well as checkout popup
         this.getInfo = async () =>{
             let productObject = await productInfo(this.props.skew)
             this.setState({
@@ -28,6 +29,7 @@ class CartItem extends React.Component {
         this.getInfo()
     }
 
+    // acceses image from firebase and sets it to a div bg style
     getImage = () => {
         getBGImageFromStore(
             this.props.skew,
@@ -37,6 +39,7 @@ class CartItem extends React.Component {
         )
     }
 
+    // removes this item updates total, cart, checkout states
     removeItem = () => {
         let priceTotal = (this.state.object['price'] * (localStorage[this.props.skew]))
         this.props.cartTotal(priceTotal, this.props.skew, -1)

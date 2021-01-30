@@ -16,6 +16,7 @@ class CategoryPage extends React.Component {
             object: {}
         }
 
+        // imoports items and categories from firebase
         this.loadKeys = async () =>{
             let productObject = await productInfo()
             let categoryObject = await categories(this.props.type)
@@ -31,6 +32,7 @@ class CategoryPage extends React.Component {
         this.loadKeys()
     }
 
+    // filters shop page via tags in items info object
     filterItems = (type) => {
         let skew = []
 

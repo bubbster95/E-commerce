@@ -24,6 +24,7 @@ class HomePage extends React.Component {
             count: 0
         }
 
+        // updates cart icon number
         this.updateCount = () => {
             this.setState({count: 0})
             let storeKeys = Object.keys(localStorage)
@@ -63,11 +64,13 @@ class HomePage extends React.Component {
         this.unsubscribeFromAuth()
     }
 
+    // renders a page for each item chosen for viewing
     renderItemPage = (routerProps) => {
         let skew = routerProps.match.params.skew
         return <ItemPage skew={skew} updateCount={this.updateCount} />
     }
 
+    // renders a page populated with items in the category chosen
     renderCategoryPage = (routerProps) => {
         let path = routerProps.match.params.path
         return <CategoryPage type={path}/>

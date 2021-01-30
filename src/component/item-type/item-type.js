@@ -4,9 +4,7 @@ import {getBGImageFromStore} from '../../firebase';
 
 import './item-type.css';
 
-import {
-    Link
-  } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class ItemType extends React.Component {
     getImage = () => {

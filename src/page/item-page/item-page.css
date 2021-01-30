@@ -1,6 +1,7 @@
 .item-page-container {
     margin: auto;
-    width: 90%;
+    width: 90vw;
+    max-width: 600px;
     background-color: white;
     padding-bottom: 20px;
 }

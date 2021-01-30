@@ -15,6 +15,7 @@ class Shop extends React.Component {
             object: {}
         }
 
+        // loads possible categories and their info
         this.loadKeys = async () =>{
             let categoryObject = await categories()
             this.setState({
@@ -27,6 +28,8 @@ class Shop extends React.Component {
     componentDidMount() {
         this.loadKeys()
     }
+
+    // renders a link to each category page
 
     filterItems = () => {  
         let object = this.state.object;
@@ -49,7 +52,7 @@ class Shop extends React.Component {
     render() {
         return (
             <div className="page">
-                <HeroImage />
+                <HeroImage page='Shop'/>
                 <div className='items-container'>
                     {this.filterItems()}
                 </div>

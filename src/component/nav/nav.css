@@ -34,9 +34,24 @@
 }
 
 .link {
+    padding-top: 20px;
+    padding-bottom: 20px;
     text-decoration: none;
     color: white;
     font-size: larger;
+}
+
+.link:hover {
+    position: relative;
+    top: -2px;
+    color: bisque;
+    transition: .2s;
+}
+
+.link:active {
+    position: relative;
+    top: 5px;
+    transition: .2s;
 }
 
 .nav-container>ul {

@@ -1,0 +1,21 @@
+.about-page {
+    position: relative;
+    top: 250px;
+}
+.welcome-text {
+    background-color: white;
+    border: solid 2px black;
+    width: 90vw;
+    max-width: 1000px;
+    margin: auto;
+    padding-bottom: 10px;
+}
+
+.welcome-text > h2, .welcome-text > p, .welcome-text > a {
+    margin: 20px;
+}
+
+a {
+    display: block;
+    text-align: center;
+}

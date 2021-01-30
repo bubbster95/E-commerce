@@ -18,6 +18,7 @@ class Cart extends React.Component {
     componentDidUpdate() {
     }
     
+    // dynamically render cart items
     cartItems = () => {
         let storeKeys = Object.keys(localStorage)
 
@@ -38,6 +39,7 @@ class Cart extends React.Component {
         this.populateCheckOut()
     }
 
+    // creates check out items from cart list and adds image
     populateCheckOut = () => {
         let cartPage = document.getElementsByClassName('cart-page')[0];
         let popUp = document.createElement('DIV');
@@ -50,6 +52,17 @@ class Cart extends React.Component {
         close.className = 'cart-controls'
         close.addEventListener('click', () => this.closeOpen(popUp))
         popUp.appendChild(close)
+
+        let explain = document.createElement('P');
+        explain.innerHTML = `
+        All of the items you have picked out can be found on REI.com. 
+        They have a wonderful array of well photographed and documented products.
+        Thanks to REI, I was Able to create this E-commerce site and learn quite a lot.
+        If you'd like to purchase an item click the buttons below to visit REI.com.
+        `;
+        explain.className = 'cart-check-out-explain'
+        popUp.appendChild(explain)
+
 
         let storeKeys = Object.keys(localStorage)
         
@@ -74,6 +87,7 @@ class Cart extends React.Component {
         })
     }
 
+    // adds title, sub title, links to checkout items after async has gathered info
     addInfo = (object, skew) => {
         let textBox = document.getElementById(`text-box-${skew}`);
 
@@ -94,12 +108,14 @@ class Cart extends React.Component {
         textBox.appendChild(button)
     }
 
+    // removes div from check out if item have been removed from cart
     removeInfo = (skew) => {
         let popUp = document.getElementsByClassName('cart-check-out')[0]
         let child = document.getElementById(`check-out-item-${skew}`)
         popUp.removeChild(child)
     }
 
+    // toggle check out visibility
     closeOpen = (popUp) => {
         if (popUp.className === 'cart-check-out') {
             popUp.className = 'cart-check-out visible'
@@ -133,8 +149,10 @@ class Cart extends React.Component {
                  <div className='cart-page'>
                     {this.cartItems()}
                     <div className='cart-total'>Total: ${this.state.total}</div>
-                    <button className='cart-controls' onClick={this.clearCart}>Clear Cart</button>
-                    <button className='cart-controls' onClick={() => this.closeOpen(document.getElementsByClassName('cart-check-out')[0])}>Check Out</button>
+                    <div className='cart-controls-wrap'>
+                        <button className='cart-controls clear-cart' onClick={this.clearCart}>Clear Cart</button>
+                        <button className='cart-controls' onClick={() => this.closeOpen(document.getElementsByClassName('cart-check-out')[0])}>Check Out</button>
+                    </div>
                 </div>
             )
         } else {

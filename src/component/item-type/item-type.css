@@ -2,23 +2,34 @@
     display: inline-block; 
     position: relative;
     width: 60vw;
+    max-width: 200px;
     height: 60vw;
+    max-height: 200px;
     text-align: center;
     margin: auto;
+    margin: 20px;
+    margin-bottom: 20px;
     border: solid 2px rgba(60, 60, 60, 0.5);
  }
 
- .type-container:hover {
+a {
+    display: inline;
+    margin: auto;
+    max-width: 200px;
+}
+
+.type-container:hover {
     top: -2px;
     border-color: black;
  }
  
- .type-image-container {
-     width: 100%;
-     height: 60vw;
+.type-image-container {
+    width: 100%;
+    height: 60vw;
+    max-height: 200px;
  }
  
- .type-image {
+.type-image {
     position: relative;
     width: 100%;
     height: 100%;
@@ -28,17 +39,21 @@
     background-color: white;
  }
  
- .type-info-container {
-     position: relative;
-     background: rgba(255, 255, 255, .5);
-     width: 100%;
-     height: 20vw;
-     margin: 0;
-     top: -20vw;
-     text-align: center;
+.type-info-container {
+    position: absolute;
+    display: flex;
+    background: rgba(255, 255, 255, .5);
+    width: 100%;
+    height: 20vw;
+    max-height: 50PX;
+    margin: 0;
+    bottom: 0px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
  }
 
- .title {
-     font-size: 20pt;
-     font-weight: 900;
+.title {
+    font-size: 20pt;
+    font-weight: 900;
  }

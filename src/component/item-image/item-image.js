@@ -35,6 +35,7 @@ constructor(props) {
         }
     }
 
+    // populates image carosel with main images and thumbnails
     renderImages = () => { 
         let imageCount = this.state.object['url']['count'];
 
@@ -70,6 +71,7 @@ constructor(props) {
         carosel.appendChild(thumbs);
     }
 
+    // toggles visibility of the image useres choose
     changeSlide(image) {
         let thisImage = document.getElementById(image)
         let oldImages = document.getElementsByClassName('visible')

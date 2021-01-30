@@ -1,20 +1,24 @@
 .item-container {
-   display: inline-block; 
+   display: inline-block;
    position: relative;
    width: 60vw;
+   max-width: 200px;
    height: 90vw;
+   max-height: 350px;
    margin: 20px;
    border: solid 2px rgba(60, 60, 60, 0.5);
    cursor: pointer;
 }
 .item-container:hover {
     top: -2px;
-   border-color: black;
+    border-color: black;
 }
 
 .image-container {
     width: 60vw;
+    max-width: 200px;
     height: 60vw;
+    max-height: 200px;
 }
 
 .product-image {
@@ -32,6 +36,7 @@
     top: -20px;
     background: linear-gradient(to bottom, white, rgba(255, 255, 255, 0.3));
     width: 60vw;
+    max-width: 200px;
     margin: auto;
     text-align: center;
 }

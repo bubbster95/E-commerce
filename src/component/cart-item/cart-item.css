@@ -1,6 +1,7 @@
 .cart-item-container {
     display: flex;
     width: 90vw;
+    max-width: 1000px;
     margin: 20px auto;
     border: solid 2px black;
     background-color: white;
@@ -30,7 +31,6 @@
 .cart-item-price {
     font-size: larger;
 }
-
 
 .remove-item {
     margin: auto;

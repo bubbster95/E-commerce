@@ -15,14 +15,17 @@ const config = {
 // Initialize Firebase
 firebase.initializeApp(config);
 firebase.analytics();
+
+// Pulls image refrence from fibase then sets it as a BG style to a uniq div
 export const getBGImageFromStore = async (divId, bucket, image, thumb) => {
   let gsReference = firebase.storage().refFromURL(bucket)
 
   gsReference.child(image).getDownloadURL().then(function(url) {
-    // Inserted into an <img> element:
+    // Inserted into an <Div> element:
     let img = document.getElementById(divId);
     img.style.backgroundImage = `url(${url}`;
 
+    // Adds a thumbnail if specified
     if (thumb) {
       let thumbNail = document.getElementById(thumb) 
       thumbNail.style.backgroundImage = `url(${url}`;
@@ -47,33 +50,7 @@ export const getBGImageFromStore = async (divId, bucket, image, thumb) => {
   });
 } 
 
-export const getImageFromStore = async (divId, bucket, image) => {
-  let gsReference = firebase.storage().refFromURL(bucket)
-
-  gsReference.child(image).getDownloadURL().then(function(url) {
-    // Inserted into an <img> element:
-    let img = document.getElementById(divId);
-    img.src = url;
-  }).catch(function(error) {
-
-    switch (error.code) {
-      case 'storage/object-not-found':
-        // File doesn't exist
-        break;
-  
-      case 'storage/unauthorized':
-        // User doesn't have permission to access the object
-        break;
-
-      case 'storage/unknown':
-        // Unknown error occurred, inspect the server response
-        break;
-
-      default:
-    }
-  });
-} 
-
+// returns the category object from firebase
 export const categories = async (skew) => {
   let category = firestore.doc(`categories/LjDayMEFWras6WWmdWJ7`)
   let categories;
@@ -93,6 +70,7 @@ export const categories = async (skew) => {
   return categories
 }
 
+// returns the info object for one product or all products
 export const productInfo = async (skew) => {
   let products = firestore.doc(`products/e6KdQuiqvS6t9fAj0hZT`)
   let productInfo;
@@ -112,6 +90,7 @@ export const productInfo = async (skew) => {
   return productInfo
 }
 
+// creates profile data for each user
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if(!userAuth) return;
   
