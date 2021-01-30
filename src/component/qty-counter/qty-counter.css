@@ -29,3 +29,7 @@
     font-size: 15pt;
     font-weight: 500;
 }
+
+.qty {
+    display: block;
+}

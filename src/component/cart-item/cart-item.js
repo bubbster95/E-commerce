@@ -20,8 +20,8 @@ class CartItem extends React.Component {
             })
 
             this.getImage()
-            this.props.updateObject(this.props.skew, this.state.object)
             this.props.cartTotal(this.state.object['price'], this.props.skew)
+            this.props.addInfo(this.state.object,this.props.skew)
         }
     }
 

@@ -4,8 +4,7 @@
 }
 
 .cart-controls {
-    margin: auto;
-    margin-left: 20px;
+    margin: 20px;
     display: inline;
     padding: 10px;
     background-color: transparent;
@@ -25,7 +24,6 @@
     border: solid 2px black;
     margin: auto;
     padding: 1vw;
-    margin-bottom: 20px;
 }
 
 .empty-cart {
@@ -34,25 +32,41 @@
 
 .cart-check-out {
     position: fixed;
+    display: none;
     top: 70px;
     background-color: white;
     width: 100vw;
     height: 100vh;
 }
 
+.visible {
+    display: block;
+}
+
 .check-out-item {
-    background-color: blue;
+    position: relative;
     border: solid 2px black;
     width: 90vw;
-    height: 100px;
+    height: 150px;
     margin: 20px;
 }
 
 .check-out-image {
+    display: inline-block;
     width: 30%;
     height:100%;
+    margin-right: 10px;
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
     background-color: white;
+}
+
+.check-out-text-box {
+    position: absolute;
+    top: 0;
+    display: inline-block;
+    height: 100%;
+    width: 60%;
+    margin: 10px;
 }

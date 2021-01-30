@@ -13,29 +13,19 @@ class Cart extends React.Component {
             total: 0
         }
 
-
-
     }
-
-    updateObject = (skew, newObject) => {
-        this.setState((state) => ({
-            object: {...state.object, [skew]: newObject}
-        }))
-    }
-
+    
     componentDidUpdate() {
-        console.log(this.state.object)
     }
     
     cartItems = () => {
         let storeKeys = Object.keys(localStorage)
 
         return storeKeys.map(item => {
-
             return <CartItem
                 skew={item}
                 updateCount={this.props.updateCount}
-                updateObject={this.updateObject}
+                addInfo={this.addInfo}
                 cartTotal={this.cartTotal}
                 quantity={localStorage[item]}
                 key={item}
@@ -53,10 +43,15 @@ class Cart extends React.Component {
         popUp.className = 'cart-check-out'
         cartPage.appendChild(popUp)
 
-        let storeKeys = Object.keys(localStorage)
+        let close = document.createElement('BUTTON');
+        close.innerHTML = 'X'
+        close.className = 'cart-controls'
+        close.addEventListener('click', () => this.closeOpen(popUp))
+        popUp.appendChild(close)
 
-        storeKeys.map(async item => {
-            console.log(this.state.object[item])
+        let storeKeys = Object.keys(localStorage)
+        
+        storeKeys.map(item => {
             let itemWrap = document.createElement('DIV');
             itemWrap.className = 'check-out-item';
             itemWrap.key=`check-out-${item}`;
@@ -69,13 +64,39 @@ class Cart extends React.Component {
 
             let textBox = document.createElement('DIV');
             textBox.className = 'check-out-text-box';
+            textBox.id = `text-box-${item}`
             itemWrap.appendChild(textBox);
 
-            await this.state.object[item]
-            let title = document.createElement('H2');
-            title.innerHTML = `${this.state.object[item]}`
             return null
         })
+    }
+
+    addInfo = (object, skew) => {
+        let textBox = document.getElementById(`text-box-${skew}`);
+
+        let title = document.createElement('H2');
+        title.className = 'check-out-title';
+        title.innerHTML = `${object['title']}`;
+        textBox.appendChild(title);
+
+        let sub = document.createElement('H3');
+        sub.className = 'check-out-sub';  
+        sub.innerHTML = `${object['sub']}`;
+        textBox.appendChild(sub); 
+        
+        let button = document.createElement('BUTTON');
+        button.className = 'cart-controls'
+        button.innerHTML = 'Buy from REI'
+        button.addEventListener('click', () => window.open(object['link'], '_blank'))
+        textBox.appendChild(button)
+    }
+
+    closeOpen = (popUp) => {
+        if (popUp.className === 'cart-check-out') {
+            popUp.className = 'cart-check-out visible'
+        } else {
+            popUp.className = 'cart-check-out'
+        }
     }
 
     cartTotal = (price, skew, add) => {
@@ -104,7 +125,7 @@ class Cart extends React.Component {
                     {this.cartItems()}
                     <div className='cart-total'>Total: ${this.state.total}</div>
                     <button className='cart-controls' onClick={this.clearCart}>Clear Cart</button>
-                    <button className='cart-controls' onClick={this.checkOut}>Check Out</button>
+                    <button className='cart-controls' onClick={() => this.closeOpen(document.getElementsByClassName('cart-check-out')[0])}>Check Out</button>
                 </div>
             )
         } else {
