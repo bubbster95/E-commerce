@@ -27,6 +27,7 @@ class Cart extends React.Component {
                 updateCount={this.props.updateCount}
                 addInfo={this.addInfo}
                 cartTotal={this.cartTotal}
+                removeInfo={this.removeInfo}
                 quantity={localStorage[item]}
                 key={item}
             />
@@ -45,6 +46,7 @@ class Cart extends React.Component {
 
         let close = document.createElement('BUTTON');
         close.innerHTML = 'X'
+        close.id = 'close'
         close.className = 'cart-controls'
         close.addEventListener('click', () => this.closeOpen(popUp))
         popUp.appendChild(close)
@@ -55,6 +57,7 @@ class Cart extends React.Component {
             let itemWrap = document.createElement('DIV');
             itemWrap.className = 'check-out-item';
             itemWrap.key=`check-out-${item}`;
+            itemWrap.id=`check-out-item-${item}`;
             popUp.appendChild(itemWrap)
 
             let image = document.createElement('DIV');
@@ -89,6 +92,12 @@ class Cart extends React.Component {
         button.innerHTML = 'Buy from REI'
         button.addEventListener('click', () => window.open(object['link'], '_blank'))
         textBox.appendChild(button)
+    }
+
+    removeInfo = (skew) => {
+        let popUp = document.getElementsByClassName('cart-check-out')[0]
+        let child = document.getElementById(`check-out-item-${skew}`)
+        popUp.removeChild(child)
     }
 
     closeOpen = (popUp) => {

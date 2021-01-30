@@ -18,7 +18,6 @@ class CartItem extends React.Component {
             this.setState({
                 object: productObject
             })
-
             this.getImage()
             this.props.cartTotal(this.state.object['price'], this.props.skew)
             this.props.addInfo(this.state.object,this.props.skew)
@@ -27,7 +26,6 @@ class CartItem extends React.Component {
 
     componentDidMount() {
         this.getInfo()
-
     }
 
     getImage = () => {
@@ -40,30 +38,35 @@ class CartItem extends React.Component {
     }
 
     removeItem = () => {
+        let priceTotal = (this.state.object['price'] * (localStorage[this.props.skew]))
+        this.props.cartTotal(priceTotal, this.props.skew, -1)
+
         localStorage.removeItem(this.props.skew)
+
+        this.props.removeInfo(this.props.skew)
         this.props.updateCount()
     }
 
     render() {
         return(
             <div className='cart-item-container' key={this.props.skew} >
-                    <div className='cart-image-container'>
-                        <div className='cart-image' id={this.props.skew} alt={this.state.object['title']}/>
-                    </div>
-                    <div className='cart-info-container'>
-                        <h2 className='cart-item-title'>{this.state.object['title']}</h2>
-                        <h3 className='cart-item-sub'>{this.state.object['sub']}</h3>
-                        <span className='cart-item-price'>${this.state.object['price']}</span>
-                        <button className='remove-item' onClick={this.removeItem}>Remove Item</button>
-                        
-                        <QtyCounter
-                            skew={this.props.skew}
-                            updateCount={this.props.updateCount}
-                            price={this.state.object['price']}
-                            cartTotal={this.props.cartTotal}
-                        />
-                    </div>
+                <div className='cart-image-container'>
+                    <div className='cart-image' id={this.props.skew} alt={this.state.object['title']}/>
                 </div>
+                <div className='cart-info-container'>
+                    <h2 className='cart-item-title'>{this.state.object['title']}</h2>
+                    <h3 className='cart-item-sub'>{this.state.object['sub']}</h3>
+                    <span className='cart-item-price'>${this.state.object['price']}</span>
+                    <button className='remove-item' onClick={this.removeItem}>Remove Item</button>
+                    
+                    <QtyCounter
+                        skew={this.props.skew}
+                        updateCount={this.props.updateCount}
+                        price={this.state.object['price']}
+                        cartTotal={this.props.cartTotal}
+                    />
+                </div>
+            </div>
         )
     }
 }

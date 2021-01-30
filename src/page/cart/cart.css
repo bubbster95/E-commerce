@@ -37,6 +37,7 @@
     background-color: white;
     width: 100vw;
     height: 100vh;
+    overflow: scroll;
 }
 
 .visible {
@@ -69,4 +70,15 @@
     height: 100%;
     width: 60%;
     margin: 10px;
+}
+
+#close {
+    position: fixed;
+    z-index: 100;
+    top: 60px;
+    left: -10px;
+}
+
+.check-out-item:last-child {
+    margin-bottom: 100px;
 }
