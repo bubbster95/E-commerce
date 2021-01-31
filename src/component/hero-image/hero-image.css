@@ -9,7 +9,7 @@
 .hero-image {
     width: 100vw;
     height: 100%;
-    opacity: 75%;
+    opacity: .75;
     background-position: left;
     background-size: cover;
     animation: scroll 30s;

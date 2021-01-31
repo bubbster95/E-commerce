@@ -24,13 +24,13 @@ class HeroImage extends React.Component {
             return(
                 <div className='hero-container'>
                     <div className='hero-page-title'>{this.props.page}</div>
-                    <div className='hero-image' id='hero-image' style={{backgroundImage: 'url("/assets/intricate-explorer-idfytKeoD0s-unsplash.jpeg")'}} alt='Beautiful vista of the wilderness.'></div>
+                    <div className='hero-image' id='hero-image' style={{backgroundImage: `url("${this.state.imageUrl}")`}} alt='Beautiful vista of the wilderness.'></div>
                 </div>
             )
         } else {
             return(
                 <div className='hero-container'>
-                    <div className='hero-image' id='hero-image' style={`backgroundImage: url("${this.state.imageUrl}")`} alt='Beautiful vista of the wilderness.'></div>
+                    <div className='hero-image' id='hero-image' style={{backgroundImage: `url("${this.state.imageUrl}")`}} alt='Beautiful vista of the wilderness.'></div>
                 </div>
             )
         }
