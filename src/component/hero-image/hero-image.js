@@ -2,16 +2,12 @@ import React from 'react';
 
 import './hero-image.css'
 
-import { getBGImageFromStore } from '../../firebase'
 
 class HeroImage extends React.Component {
     componentDidMount() {
-        let image = ['kenneth-hargrave-GjsWjLCIh5I-unsplash.jpeg', 'intricate-explorer-idfytKeoD0s-unsplash.jpeg', 'thomas-galler-IvtbiWEVa-4-unsplash.jpeg', 'ugur-peker-9Wuxjit62QU-unsplash.jpeg', 'ugur-peker-9Wuxjit62QU-unsplash.jpeg']
-        getBGImageFromStore(
-            'hero-image',
-            'gs://e-commerce-697c4.appspot.com',
-            image[ this.diceRoll(image) ]
-        )
+        let image = ['/assets/kenneth-hargrave-GjsWjLCIh5I-unsplash.jpeg', '/assets/intricate-explorer-idfytKeoD0s-unsplash.jpeg', '/assets/intricate-explorer-idfytKeoD0s-unsplash.jpeg', '/assets/thomas-galler-IvtbiWEVa-4-unsplash.jpeg', '/assets/ugur-peker-9Wuxjit62QU-unsplash.jpeg', '/assets/ugur-peker-9Wuxjit62QU-unsplash.jpeg']
+        let imageDiv = document.getElementById('hero-image')
+        imageDiv.style.backgroundImage = `url(${image[this.diceRoll(image)]})`
     }
 
     diceRoll(image) {
