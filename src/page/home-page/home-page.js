@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route, } from "react-router-dom";
 import { auth,  createUserProfileDocument } from '../../firebase'
+import { getCart } from '../../local-storage'
 
 import Nav from '../../component/nav/nav.js'
 
@@ -27,13 +28,17 @@ class HomePage extends React.Component {
         // updates cart icon number
         this.updateCount = () => {
             this.setState({count: 0})
-            let storeKeys = Object.keys(localStorage)
+            let cart = getCart()
 
-            let reduced = 0;
-            storeKeys.map(item => {
-                return reduced += parseInt(localStorage[item])
-            })
-            this.setState({ count: reduced })
+            if (cart){
+                let storeKeys = Object.keys(cart)
+    
+                let reduced = 0;
+                storeKeys.map(item => {
+                    return reduced += parseInt(cart[item])
+                })
+                this.setState({ count: reduced })
+            }
         }
 
     }

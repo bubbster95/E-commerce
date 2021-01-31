@@ -1,4 +1,5 @@
 import React from 'react';
+import { getCart } from '../../local-storage'
 
 import CartItem from '../../component/cart-item/cart-item'
 
@@ -20,7 +21,8 @@ class Cart extends React.Component {
     
     // dynamically render cart items
     cartItems = () => {
-        let storeKeys = Object.keys(localStorage)
+        let cart = getCart()
+        let storeKeys = Object.keys(cart)
 
         return storeKeys.map(item => {
             return <CartItem
@@ -29,7 +31,7 @@ class Cart extends React.Component {
                 addInfo={this.addInfo}
                 cartTotal={this.cartTotal}
                 removeInfo={this.removeInfo}
-                quantity={localStorage[item]}
+                quantity={cart[item]}
                 key={item}
             />
         })
@@ -63,8 +65,8 @@ class Cart extends React.Component {
         explain.className = 'cart-check-out-explain'
         popUp.appendChild(explain)
 
-
-        let storeKeys = Object.keys(localStorage)
+        let cart = getCart()
+        let storeKeys = Object.keys(cart)
         
         storeKeys.map(item => {
             let itemWrap = document.createElement('DIV');
@@ -125,13 +127,14 @@ class Cart extends React.Component {
     }
 
     cartTotal = (price, skew, add) => {
+        let cart = getCart()
         if (add) {
             let newTotal = this.state.total + (price * add)
             this.setState({
                 total: (Math.round(newTotal * 100) / 100)
             })
         } else  {
-            let newTotal = this.state.total + (price * localStorage[skew]);
+            let newTotal = this.state.total + (price * cart[skew]);
             this.setState({
                 total: (Math.round(newTotal * 100) / 100)
             })
@@ -144,7 +147,7 @@ class Cart extends React.Component {
     }
 
     render() {
-        if (localStorage.length >=1) {
+        if (Object.keys(getCart()).length >=1) {
             return (
                  <div className='cart-page'>
                     {this.cartItems()}

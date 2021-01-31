@@ -1,6 +1,8 @@
 import React from 'react';
 import {productInfo} from '../../firebase';
 
+import { getCart, setCart } from '../../local-storage'
+
 import './item-page.css'
 
 import QtyCounter from '../../component/qty-counter/qty-counter'
@@ -33,9 +35,16 @@ class ItemPage extends React.Component {
         if (isNaN(quantity)) {
             quantity = 1
         }
+        if (getCart()) {
+            let cart = getCart()
+            cart[this.props.skew] = quantity
+            setCart(cart)
+        } else {
+            setCart({[this.props.skew]: quantity})
+        }
 
-        localStorage.setItem(this.props.skew, quantity)
         this.props.updateCount()
+        alert('You added: ' + this.state.object['title'] + ' to your cart.')
     }
 
     render() {

@@ -4,6 +4,7 @@ import { getBGImageFromStore, productInfo } from '../../firebase'
 import './cart-item.css'
 
 import QtyCounter from '../qty-counter/qty-counter';
+import { getCart, setCart } from '../../local-storage';
 
 class CartItem extends React.Component {
     constructor(props) {
@@ -41,11 +42,12 @@ class CartItem extends React.Component {
 
     // removes this item updates total, cart, checkout states
     removeItem = () => {
-        let priceTotal = (this.state.object['price'] * (localStorage[this.props.skew]))
+        let cart = getCart()
+        let priceTotal = (this.state.object['price'] * (cart[this.props.skew]))
         this.props.cartTotal(priceTotal, this.props.skew, -1)
 
-        localStorage.removeItem(this.props.skew)
-
+        delete cart[this.props.skew]
+        setCart(cart)
         this.props.removeInfo(this.props.skew)
         this.props.updateCount()
     }
