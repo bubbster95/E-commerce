@@ -1,5 +1,5 @@
 import React from 'react';
-import { getCart } from '../../local-storage'
+import { getCart, setCart } from '../../local-storage'
 
 import CartItem from '../../component/cart-item/cart-item'
 
@@ -142,7 +142,7 @@ class Cart extends React.Component {
     }
 
     clearCart = () => {
-        localStorage.clear()
+        setCart({})
         this.props.updateCount()
     }
 
