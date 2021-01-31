@@ -5,10 +5,12 @@ import './hero-image.css'
 
 class HeroImage extends React.Component {
     componentDidMount() {
-        let image = ['/assets/kenneth-hargrave-GjsWjLCIh5I-unsplash.jpeg', '/assets/intricate-explorer-idfytKeoD0s-unsplash.jpeg', '/assets/intricate-explorer-idfytKeoD0s-unsplash.jpeg', '/assets/thomas-galler-IvtbiWEVa-4-unsplash.jpeg', '/assets/ugur-peker-9Wuxjit62QU-unsplash.jpeg', '/assets/ugur-peker-9Wuxjit62QU-unsplash.jpeg']
-        let roll = this.diceRoll(image);
-        let imageDiv = document.getElementById(`hero-image-${roll}`)
-        imageDiv.style.backgroundImage = `url(${image[roll]})`
+        // let image = ['/assets/kenneth-hargrave-GjsWjLCIh5I-unsplash.jpeg', '/assets/intricate-explorer-idfytKeoD0s-unsplash.jpeg', '/assets/intricate-explorer-idfytKeoD0s-unsplash.jpeg', '/assets/thomas-galler-IvtbiWEVa-4-unsplash.jpeg', '/assets/ugur-peker-9Wuxjit62QU-unsplash.jpeg', '/assets/ugur-peker-9Wuxjit62QU-unsplash.jpeg']
+        // let roll = this.diceRoll(image);
+        let imageDiv = document.getElementById(`hero-image`)
+
+        imageDiv.style.backgroundImage = `/assets/kenneth-hargrave-GjsWjLCIh5I-unsplash.jpeg`
+        // imageDiv.style.backgroundImage = `url(${image[roll]})`
     }
 
     diceRoll(image) {
@@ -21,11 +23,7 @@ class HeroImage extends React.Component {
             return(
                 <div className='hero-container'>
                     <div className='hero-page-title'>{this.props.page}</div>
-                    <div className='hero-image' id='hero-image-0' alt='Beautiful vista of the wilderness.'></div>
-                    <div className='hero-image' id='hero-image-1' alt='Beautiful vista of the wilderness.'></div>
-                    <div className='hero-image' id='hero-image-2' alt='Beautiful vista of the wilderness.'></div>
-                    <div className='hero-image' id='hero-image-3' alt='Beautiful vista of the wilderness.'></div>
-                    <div className='hero-image' id='hero-image-4' alt='Beautiful vista of the wilderness.'></div>
+                    <div className='hero-image' id='hero-image' alt='Beautiful vista of the wilderness.'></div>
                 </div>
             )
         } else {
