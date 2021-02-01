@@ -15,7 +15,7 @@
 .logo {
     position: relative;
     height: 50px;
-    width: 20vw;
+    width: 100px;
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -29,7 +29,7 @@
 .nav-container>ul>li {
     position: relative;
     display: block;
-    margin: 5%;
+    /* margin: 5%; */
     text-align: center;
 }
 
@@ -55,9 +55,12 @@
 }
 
 .nav-container>ul {
+    position: relative;
     display: flex;
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
     width: 100%;
     align-items: center;
+    justify-content: space-evenly;
+    max-width: 1000px;
 }
