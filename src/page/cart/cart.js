@@ -120,7 +120,7 @@ class Cart extends React.Component {
     // toggle check out visibility
     closeOpen = (popUp) => {
         if (popUp.className === 'cart-check-out') {
-            popUp.className = 'cart-check-out visible'
+            popUp.className = 'cart-check-out toggle'
         } else {
             popUp.className = 'cart-check-out'
         }

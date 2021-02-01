@@ -7,6 +7,7 @@ import './item-page.css'
 
 import QtyCounter from '../../component/qty-counter/qty-counter'
 import ItemImage from '../../component/item-image/item-image'
+import AddedToCart from '../../component/added-to-cart/added-to-cart'
 
 class ItemPage extends React.Component {
     constructor(props) {
@@ -29,6 +30,15 @@ class ItemPage extends React.Component {
         this.getInfo()
     }
 
+    toggle = () => {
+        let popUp = document.getElementsByClassName('added-to-cart-wrapper')[0];
+        if (popUp.className === 'added-to-cart-wrapper') {
+            popUp.className = 'added-to-cart-wrapper flex'
+        } else {
+            popUp.className = 'added-to-cart-wrapper'
+        }
+    }
+
     addToCart = () => {
         let quantity = parseInt(document.getElementsByClassName('item-quantity')[0].innerHTML);
 
@@ -44,7 +54,7 @@ class ItemPage extends React.Component {
         }
 
         this.props.updateCount()
-        alert('You added: ' + this.state.object['title'] + ' to your cart.')
+        this.toggle()
     }
 
     render() {
@@ -52,6 +62,7 @@ class ItemPage extends React.Component {
             <div className='item-page'>
                 <div className='item-page-container' key={this.props.skew} >
                     <ItemImage skew={this.props.skew} object={this.state.object}/>
+                    <AddedToCart toggle={this.toggle} object={this.state.object}/>
                     <div className='info-page-container'>
                         <h2 className='item-title'>{this.state.object['title']}</h2>
 
