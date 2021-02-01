@@ -1,15 +1,10 @@
 .type-container {
-    display: inline-block; 
     position: relative;
-    width: 60vw;
-    max-width: 200px;
-    height: 60vw;
-    max-height: 200px;
-    text-align: center;
-    margin: auto;
-    margin: 20px;
-    margin-bottom: 20px;
-    border: solid 2px rgba(60, 60, 60, 0.5);
+   width: 200px;
+   height: 200px;
+   margin-top: 20px;
+   border: solid 2px rgba(60, 60, 60, 0.5);
+   cursor: pointer;
  }
 
 a {

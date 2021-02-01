@@ -33,7 +33,7 @@ class CategoryPage extends React.Component {
     }
 
     // filters shop page via tags in items info object
-    filterItems = (type) => {
+    filterItems = () => {
         let skew = []
 
         let object = this.state.object;

@@ -1,4 +1,12 @@
 .items-list {
+    display: flex;
     margin: auto;
     text-align: center;
+    width: 90vw;
+    max-width: 900px;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: space-evenly;
+    justify-content: space-evenly;
+    justify-items: center;
 }

@@ -1,13 +1,12 @@
 .item-container {
-   display: inline-block;
-   position: relative;
-   width: 60vw;
-   max-width: 200px;
-   height: 90vw;
-   max-height: 350px;
-   margin: 20px;
+   width: 200px;
+   height: 320px;
+   margin-top: 20px;
    border: solid 2px rgba(60, 60, 60, 0.5);
    cursor: pointer;
+}
+a {
+    margin: 0;
 }
 .item-container:hover {
     top: -2px;
@@ -15,10 +14,8 @@
 }
 
 .image-container {
-    width: 60vw;
-    max-width: 200px;
-    height: 60vw;
-    max-height: 200px;
+    width: 200px;
+    height: 200px;
 }
 
 .product-image {
@@ -35,8 +32,7 @@
     position: relative;
     top: -20px;
     background: linear-gradient(to bottom, white, rgba(255, 255, 255, 0.3));
-    width: 60vw;
-    max-width: 200px;
+    width: 200px;
     margin: auto;
     text-align: center;
 }
