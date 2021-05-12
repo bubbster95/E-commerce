@@ -1,27 +1,20 @@
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
 import { Switch, Route, } from "react-router-dom";
 import { auth,  createUserProfileDocument } from '../../firebase'
 import { getCart } from '../../local-storage'
 
+import Nav from '../../component/nav/nav.js'
+
+import About from '../../page/about/about'
+
+import Shop from '../../page/shop/shop'
+import ItemPage from '../item-page/item-page'
+import CategoryPage from '../category-page/category-page'
+import Cart from '../../page/cart/cart'
+
+import SignInSignUp from '../../page/sign-in-sign-up/sign-in-sign-up'
+
 import './home-page.css'
-
-// import Nav from '../../component/nav/nav.js'
-const Nav = lazy(() => import('../../component/nav/nav.js'));
-
-const About = lazy(() => import('../../page/about/about'));
-const Shop = lazy(() => import('../../page/shop/shop'));
-const ItemPage = lazy(() => import('../item-page/item-page'));
-const CategoryPage = lazy(() => import('../category-page/category-page'));
-const Cart = lazy(() => import('../../page/cart/cart'));
-// import About from '../../page/about/about'
-// import Shop from '../../page/shop/shop'
-// import ItemPage from '../item-page/item-page'
-// import CategoryPage from '../category-page/category-page'
-// import Cart from '../../page/cart/cart'
-
-const SignInSignUp = lazy(() => import('../../page/sign-in-sign-up/sign-in-sign-up'));
-// import SignInSignUp from '../../page/sign-in-sign-up/sign-in-sign-up'
-
 
 class HomePage extends React.Component {
     constructor() {
@@ -89,7 +82,7 @@ class HomePage extends React.Component {
     }
 
     render() {
-        return <Suspense fallback={<div>Fallback</div>} className='home-page'>
+        return <div className='home-page'>
             <Nav currentUser={this.state.currentUser} count={this.state.count} />
             <Switch>
                 <Route exact path="/about"component={About} />
@@ -108,7 +101,7 @@ class HomePage extends React.Component {
                     <Shop />
                 </Route>
             </Switch>
-        </Suspense>;
+        </div>;
     }
 }
 
