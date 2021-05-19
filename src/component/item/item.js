@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {getBGImageFromStore} from '../../firebase';
+import { getBGImageFromStore } from '../../firebase';
 
 import './item.css';
 
@@ -11,7 +11,7 @@ import {
 class Item extends React.Component {
 
     getImage = () => {
-        getBGImageFromStore(this.props.skew, this.props.bucket, this.props.image + '_0.jpeg')
+        getBGImageFromStore(this.props.skew, this.props.image + '_0.jpeg')
     }
 
     render() {

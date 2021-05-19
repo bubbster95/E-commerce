@@ -1,5 +1,5 @@
 import React from 'react';
-import { getBGImageFromStore, productInfo } from '../../firebase'
+import { getBGImageFromStore, collectionInfo } from '../../firebase'
 
 import './cart-item.css'
 
@@ -16,7 +16,7 @@ class CartItem extends React.Component {
 
         // sets object to specific item info, and updates, cart total, as well as checkout popup
         this.getInfo = async () =>{
-            let productObject = await productInfo(this.props.skew)
+            let productObject = await collectionInfo('product', this.props.skew)
             this.setState({
                 object: productObject
             })
@@ -34,7 +34,6 @@ class CartItem extends React.Component {
     getImage = () => {
         getBGImageFromStore(
             this.props.skew,
-            this.state.object['url']['bucket'],
             this.state.object['url']['image'] + '_0.jpeg',
             `check-out-${this.props.skew}`
         )

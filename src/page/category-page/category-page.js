@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { productInfo, categories } from '../../firebase'
+import { collectByTags } from '../../firebase'
 
 import './category-page.css';
 
@@ -12,16 +12,13 @@ class CategoryPage extends React.Component {
         super(props)
 
         this.state = {
-            category: {},
             object: {}
         }
 
         // imoports items and categories from firebase
         this.loadKeys = async () =>{
-            let productObject = await productInfo()
-            let categoryObject = await categories(this.props.type)
+            let productObject = await collectByTags(this.props.type)
             this.setState({
-                category: categoryObject,
                 object: productObject
             })
         }
@@ -34,35 +31,18 @@ class CategoryPage extends React.Component {
 
     // filters shop page via tags in items info object
     filterItems = () => {
-        let skew = []
-
         let object = this.state.object;
-        let keys = Object.keys(object);
 
-        keys.filter(item => {
-            let thisItem = object[item]
-            let tagsItemHas = thisItem['tags']
-            let tagsToLookFor = this.state.category['tags']
-
-            for (let i=0; i < tagsItemHas.length; i++) {
-                if (tagsToLookFor.includes(tagsItemHas[i]) && !skew.includes(item)) {
-                    skew.push(item)
-                }
-            }
-            return skew
-            
-        })
-        let list = skew.map(item => {
+        let list = Object.keys(object).map(item => {
             let thisItem = object[item]
                 return <Item
                     path={this.props.type}
                     key={item}
-                    skew={item}
+                    skew={thisItem['sku']}
                     price={thisItem['price']}
                     sub={thisItem['sub']}
                     title={thisItem['title']}
                     image={thisItem['url']['image']}
-                    bucket={thisItem['url']['bucket']}
                 />
         })
         return <div className='items-list'>{list}</div>

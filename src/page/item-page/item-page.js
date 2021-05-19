@@ -1,5 +1,5 @@
 import React from 'react';
-import {productInfo} from '../../firebase';
+import { collectionInfo } from '../../firebase';
 
 import { getCart, setCart } from '../../local-storage'
 
@@ -18,7 +18,7 @@ class ItemPage extends React.Component {
         }
 
         this.getInfo = async () =>{
-            let productObject = await productInfo(this.props.skew)
+            let productObject = await collectionInfo('product', this.props.skew)
             this.setState({
                 object: productObject
             })

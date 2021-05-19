@@ -2,7 +2,7 @@ import React from 'react';
 
 import './item-image.css'
 
-import {getBGImageFromStore, productInfo} from '../../firebase';
+import {getBGImageFromStore, collectionInfo} from '../../firebase';
 
 class ItemImage extends React.Component {
 constructor(props) {
@@ -14,7 +14,7 @@ constructor(props) {
     }
 
     this.getInfo = async () =>{
-        let productObject = await productInfo(this.props.skew)
+        let productObject = await collectionInfo('product', this.props.skew)
         this.setState({
             object: productObject
         })
@@ -37,6 +37,7 @@ constructor(props) {
 
     // populates image carosel with main images and thumbnails
     renderImages = () => { 
+        
         let imageCount = this.state.object['url']['count'];
 
         let carosel = document.getElementById('image-page-container');
@@ -56,7 +57,6 @@ constructor(props) {
 
             getBGImageFromStore(
                 `${this.props.skew}-${i}`,
-                this.state.object['url']['bucket'],
                 `${this.state.object["url"]["image"]}_${i}.jpeg`,
                 `${this.props.skew}-${i}-thumb`
             )

@@ -16,15 +16,37 @@ const config = {
 firebase.initializeApp(config);
 firebase.analytics();
 
-// Pulls image refrence from fibase then sets it as a BG style to a uniq div
-export const getBGImageFromStore = async (divId, bucket, image, thumb) => {
-  let gsReference = firebase.storage().refFromURL(bucket)
+const storage = firebase.storage();
 
+// Adds images to firebase 
+export const addImageToStore = async (image, newName) => {
+  let uploadTask = storage.ref(`${newName}`).put(image)
+  uploadTask.on(
+    "state_changed",
+    snapshot => {},
+    error => {
+      console.log(error);
+    },
+    () => {
+      storage
+        .ref("")
+        .child(newName)
+        .getDownloadURL()
+        .then(url => {
+          console.log(url);
+        })
+    }
+  )
+}
+
+// Pulls image refrence from fibase then sets it as a BG style to a uniq div
+export const getBGImageFromStore = async (divId, image, thumb) => {
+  let gsReference = firebase.storage().refFromURL(`gs://${config.storageBucket}`)
   gsReference.child(image).getDownloadURL().then(function(url) {
-    // Inserted into an <Div> element:
+    // Inserted into a <Div> element:
     let img = document.getElementById(divId);
     img.style.backgroundImage = `url(${url}`;
-
+    
     // Adds a thumbnail if specified
     if (thumb) {
       let thumbNail = document.getElementById(thumb) 
@@ -50,44 +72,68 @@ export const getBGImageFromStore = async (divId, bucket, image, thumb) => {
   });
 } 
 
-// returns the category object from firebase
-export const categories = async (skew) => {
-  let category = firestore.doc(`categories/LjDayMEFWras6WWmdWJ7`)
-  let categories;
-  await category
-    .get()
-    .then(function(doc) {
-      if (doc.exists) {
-        if (skew) {
-          categories = doc.data()[skew]
-        } else {
-          categories = doc.data()
-        }
-      } else {
-        console.log('No such document')
-      }
+export const addRemoveCollection = async (newCollection, selector, pleaseDelete) => {
+  if (selector === 'category') {
+    let category = firestore.doc(`categories/eFvTcJ1ZELsGSb2AK6Fp`);
+    if (pleaseDelete) {
+      let categoryName = newCollection.title.toLowerCase()
+      let thisCategory = firestore.collection('categories').doc(`eFvTcJ1ZELsGSb2AK6Fp`)
+      // delete the document
+      thisCategory.update({
+        [categoryName]: firebase.firestore.FieldValue.delete()
+      })
+    } else {
+      category.update(newCollection);
+    }
+  } else {
+    let product = firestore.doc(`products/Kmz9ievzdZKNjem6Q4mp`);
+    product.update(newCollection);
+  }
+}
+
+export const collectByTags = async (tag) => {
+  let products = firestore.collection('products')
+  let info;
+  await products
+  .where('tags', "array-contains", tag)
+  .get()
+  .then( function(collection) {
+    // If there are items with the selected tag; group them into info.
+    if (!collection.empty) {
+      info = Object.keys(collection.docs).map(doc => {
+        return collection.docs[doc].data()
+      })
+    } else {
+      console.log('No such document')
+    }
+    console.log('info', info)
   })
-  return categories
+  return info
 }
 
 // returns the info object for one product or all products
-export const productInfo = async (skew) => {
-  let products = firestore.doc(`products/e6KdQuiqvS6t9fAj0hZT`)
-  let productInfo;
-  await products
+export const collectionInfo = async (selector, skew) => {
+  let collection;
+  if (selector === 'product') {
+    collection = firestore.doc(`products/e6KdQuiqvS6t9fAj0hZT`)
+  } else {
+    collection = firestore.doc(`categories/LjDayMEFWras6WWmdWJ7`)
+  }
+  let info;
+  await collection
     .get()
     .then(function(doc) {
       if (doc.exists) {
         if (skew) {
-          productInfo = doc.data()[skew]
+          info = doc.data()[skew]
         } else {
-          productInfo = doc.data()
+          info = doc.data()
         }
       } else {
         console.log('No such document')
       }
   })
-  return productInfo
+  return info
 }
 
 // creates profile data for each user

@@ -13,6 +13,7 @@ import CategoryPage from '../category-page/category-page'
 import Cart from '../../page/cart/cart'
 
 import SignInSignUp from '../../page/sign-in-sign-up/sign-in-sign-up'
+import Test from '../../test'
 
 import './home-page.css'
 
@@ -85,6 +86,7 @@ class HomePage extends React.Component {
         return <div className='home-page'>
             <Nav currentUser={this.state.currentUser} count={this.state.count} />
             <Switch>
+                <Route exact path='/test' component={ Test } />
                 <Route exact path="/about"component={About} />
 
                 <Route exact path="/cart" >
@@ -100,6 +102,7 @@ class HomePage extends React.Component {
                 <Route exact path="/" >
                     <Shop />
                 </Route>
+
             </Switch>
         </div>;
     }

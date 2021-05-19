@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { categories } from '../../firebase'
+import { collectionInfo } from '../../firebase'
 
 import './shop.css';
 
@@ -17,7 +17,7 @@ class Shop extends React.Component {
 
         // loads possible categories and their info
         this.loadKeys = async () =>{
-            let categoryObject = await categories()
+            let categoryObject = await collectionInfo('categories')
             this.setState({
                 object: categoryObject
             })

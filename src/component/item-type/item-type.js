@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {getBGImageFromStore} from '../../firebase';
+import { getBGImageFromStore } from '../../firebase';
 
 import './item-type.css';
 
@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 class ItemType extends React.Component {
     getImage = () => {
-        getBGImageFromStore(this.props.skew, this.props.bucket, this.props.image)
+        getBGImageFromStore(this.props.skew, this.props.image)
     }
 
     render() {
