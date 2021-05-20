@@ -94,11 +94,10 @@ export const addRemoveCollection = async (newCollection, selector, pleaseDelete)
 export const collectByTags = async (tag) => {
   let collection = firestore.collection('products')
   let info;
-console.log(tag)
   await collection
   .where('tags', "array-contains-any", tag)
   .get()
-  .then( function(document) {
+  .then( document => {
     // If there are items with the selected tag; group them into info.
     if (!document.empty) {
       info = Object.keys(document.docs).map(doc => {
@@ -120,16 +119,15 @@ export const collectionInfo = async (selector, sku) => {
     await collection
     .where('sku', '==',  sku)
     .get()
-    .then(function(doc) {
-      if (doc.exists) {
-        info = doc.data()[sku]
+    .then(document => {
+      if (document) {
+        info = document.docs[0].data()
       } else {
-        console.log('No such document')
+        console.log('No such document', sku)
       }
   })
   } else {
     collection = firestore.doc(`categories/LjDayMEFWras6WWmdWJ7`)
-    console.log(collection)
     await collection
       .get()
       .then(function(doc) {

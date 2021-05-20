@@ -18,9 +18,8 @@ class ItemPage extends React.Component {
         }
 
         this.getInfo = async () =>{
-            let productObject = await collectionInfo('product', this.props.skew)
             this.setState({
-                object: productObject
+                object: await collectionInfo('product', this.props.skew)
             })
 
         }
@@ -61,7 +60,7 @@ class ItemPage extends React.Component {
         return (
             <div className='item-page'>
                 <div className='item-page-container' key={this.props.skew} >
-                    <ItemImage skew={this.props.skew} object={this.state.object}/>
+                    <ItemImage skew={this.props.skew} />
                     <AddedToCart toggle={this.toggle} object={this.state.object}/>
                     <div className='info-page-container'>
                         <h2 className='item-title'>{this.state.object['title']}</h2>

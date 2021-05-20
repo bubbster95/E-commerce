@@ -15,11 +15,10 @@ class CategoryPage extends React.Component {
             object: {}
         }
 
-        // imoports items and categories from firebase
+        // Imports items by category from firebase
         this.loadKeys = async () =>{
-            let productObject = await collectByTags([this.props.type])
             this.setState({
-                object: productObject
+                object: await collectByTags([this.props.type])
             })
         }
 
@@ -34,15 +33,14 @@ class CategoryPage extends React.Component {
         let object = this.state.object;
 
         let list = Object.keys(object).map(item => {
-            let thisItem = object[item]
                 return <Item
                     path={this.props.type}
                     key={item}
-                    skew={thisItem['sku']}
-                    price={thisItem['price']}
-                    sub={thisItem['sub']}
-                    title={thisItem['title']}
-                    image={thisItem['url']['image']}
+                    skew={object[item]['sku']}
+                    price={object[item]['price']}
+                    sub={object[item]['sub']}
+                    title={object[item]['title']}
+                    image={object[item]['url']['image']}
                 />
         })
         return <div className='items-list'>{list}</div>
