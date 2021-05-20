@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { collectCategories } from '../../categoryContext'
+
 import { collectByTags } from '../../firebase'
 
 import './category-page.css';
@@ -17,11 +19,11 @@ class CategoryPage extends React.Component {
 
         // Imports items by category from firebase
         this.loadKeys = async () =>{
+            let context = await this.context
             this.setState({
-                object: await collectByTags([this.props.type])
+                object: await collectByTags(context[this.props.type]['tags'])
             })
         }
-
     }
 
     componentDidMount() {
@@ -51,11 +53,13 @@ class CategoryPage extends React.Component {
                 <div className="page">
                     <HeroImage page={this.props.type}/>
                     <div className='items-container'>
-                        {this.filterItems(this.props.type)}
+                        {this.filterItems()}
                     </div>
                 </div>
             )
     }
 }
+
+CategoryPage.contextType = collectCategories
 
 export default CategoryPage;

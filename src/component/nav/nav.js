@@ -12,7 +12,7 @@ const Nav = ({currentUser, count}) => (
     <ul>
         <li>
             <Link className="link" to="/">
-                <div className='logo' alt='base weight logo' style={{backgroundImage: 'url("/assets/base-weight-logo.png")'}}></div>
+                <div className='logo' aria-label='Shop' alt='base weight logo' style={{backgroundImage: 'url("/assets/base-weight-logo.png")'}} />
             </Link>
         </li>
         <li>

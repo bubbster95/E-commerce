@@ -39,6 +39,25 @@ export const addImageToStore = async (image, newName) => {
   )
 }
 
+export const addRemoveCollection = async (newCollection, selector, pleaseDelete) => {
+  if (selector === 'category') {
+    let category = firestore.doc(`categories/eFvTcJ1ZELsGSb2AK6Fp`);
+    if (pleaseDelete) {
+      let categoryName = newCollection.title.toLowerCase()
+      let thisCategory = firestore.collection('categories').doc(`eFvTcJ1ZELsGSb2AK6Fp`)
+      // delete the document
+      thisCategory.update({
+        [categoryName]: firebase.firestore.FieldValue.delete()
+      })
+    } else {
+      category.update(newCollection);
+    }
+  } else {
+    let product = firestore.doc(`products/Kmz9ievzdZKNjem6Q4mp`);
+    product.update(newCollection);
+  }
+}
+
 // Pulls image refrence from fibase then sets it as a BG style to a uniq div
 export const getBGImageFromStore = async (divId, image, thumb) => {
   let gsReference = firebase.storage().refFromURL(`gs://${config.storageBucket}`)
@@ -71,25 +90,6 @@ export const getBGImageFromStore = async (divId, image, thumb) => {
     }
   });
 } 
-
-export const addRemoveCollection = async (newCollection, selector, pleaseDelete) => {
-  if (selector === 'category') {
-    let category = firestore.doc(`categories/eFvTcJ1ZELsGSb2AK6Fp`);
-    if (pleaseDelete) {
-      let categoryName = newCollection.title.toLowerCase()
-      let thisCategory = firestore.collection('categories').doc(`eFvTcJ1ZELsGSb2AK6Fp`)
-      // delete the document
-      thisCategory.update({
-        [categoryName]: firebase.firestore.FieldValue.delete()
-      })
-    } else {
-      category.update(newCollection);
-    }
-  } else {
-    let product = firestore.doc(`products/Kmz9ievzdZKNjem6Q4mp`);
-    product.update(newCollection);
-  }
-}
 
 export const collectByTags = async (tag) => {
   let collection = firestore.collection('products')
