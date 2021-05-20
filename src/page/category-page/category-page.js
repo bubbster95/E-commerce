@@ -17,7 +17,7 @@ class CategoryPage extends React.Component {
 
         // imoports items and categories from firebase
         this.loadKeys = async () =>{
-            let productObject = await collectByTags(this.props.type)
+            let productObject = await collectByTags([this.props.type])
             this.setState({
                 object: productObject
             })

@@ -94,7 +94,7 @@ export const addRemoveCollection = async (newCollection, selector, pleaseDelete)
 export const collectByTags = async (tag) => {
   let collection = firestore.collection('products')
   let info;
-
+console.log(tag)
   await collection
   .where('tags', "array-contains-any", tag)
   .get()
@@ -128,7 +128,8 @@ export const collectionInfo = async (selector, sku) => {
       }
   })
   } else {
-    collection = firestore.collection(`categories`)
+    collection = firestore.doc(`categories/LjDayMEFWras6WWmdWJ7`)
+    console.log(collection)
     await collection
       .get()
       .then(function(doc) {
