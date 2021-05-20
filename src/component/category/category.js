@@ -2,7 +2,7 @@ import React from 'react';
 
 import { getBGImageFromStore } from '../../firebase';
 
-import './item-type.css';
+import './category.css';
 
 import { Link } from "react-router-dom";
 

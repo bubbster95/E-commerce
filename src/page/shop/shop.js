@@ -4,7 +4,7 @@ import { collectionInfo } from '../../firebase'
 
 import './shop.css';
 
-import ItemType from '../../component/item-type/item-type'
+import ItemType from '../../component/category/category'
 import HeroImage from '../../component/hero-image/hero-image'
 
 class Shop extends React.Component {
@@ -43,7 +43,6 @@ class Shop extends React.Component {
                 skew={item}
                 title={thisItem['title']}
                 image={thisItem['url']['image']}
-                bucket={thisItem['url']['bucket']}
             />
         })
         return <div className='items-list'>{list}</div>

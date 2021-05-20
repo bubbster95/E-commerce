@@ -92,47 +92,53 @@ export const addRemoveCollection = async (newCollection, selector, pleaseDelete)
 }
 
 export const collectByTags = async (tag) => {
-  let products = firestore.collection('products')
+  let collection = firestore.collection('products')
   let info;
-  await products
-  .where('tags', "array-contains", tag)
+
+  await collection
+  .where('tags', "array-contains-any", tag)
   .get()
-  .then( function(collection) {
+  .then( function(document) {
     // If there are items with the selected tag; group them into info.
-    if (!collection.empty) {
-      info = Object.keys(collection.docs).map(doc => {
-        return collection.docs[doc].data()
+    if (!document.empty) {
+      info = Object.keys(document.docs).map(doc => {
+        return document.docs[doc].data()
       })
     } else {
       console.log('No such document')
     }
-    console.log('info', info)
   })
   return info
 }
 
 // returns the info object for one product or all products
-export const collectionInfo = async (selector, skew) => {
+export const collectionInfo = async (selector, sku) => {
   let collection;
-  if (selector === 'product') {
-    collection = firestore.doc(`products/e6KdQuiqvS6t9fAj0hZT`)
-  } else {
-    collection = firestore.doc(`categories/LjDayMEFWras6WWmdWJ7`)
-  }
   let info;
-  await collection
+  if (selector === 'product') {
+    collection = firestore.collection(`products`)
+    await collection
+    .where('sku', '==',  sku)
     .get()
     .then(function(doc) {
       if (doc.exists) {
-        if (skew) {
-          info = doc.data()[skew]
-        } else {
-          info = doc.data()
-        }
+        info = doc.data()[sku]
       } else {
         console.log('No such document')
       }
   })
+  } else {
+    collection = firestore.collection(`categories`)
+    await collection
+      .get()
+      .then(function(doc) {
+        if (doc.exists) {
+          info = doc.data()
+        } else {
+          console.log('No such document')
+        }
+    })
+  }
   return info
 }
 
