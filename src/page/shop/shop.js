@@ -4,7 +4,8 @@ import { collectCategories } from '../../categoryContext'
 
 import './shop.css';
 
-import ItemType from '../../component/category/category'
+// import ItemType from '../../component/category/category'
+import Tile from '../../component/tile/tile'
 import HeroImage from '../../component/hero-image/hero-image'
 
 
@@ -32,7 +33,7 @@ class Shop extends React.Component {
         let object = this.state.object;
 
         let list = Object.keys(object).map(item => {
-            return <ItemType
+            return <Tile
                 path={item}
                 key={item}
                 skew={item}

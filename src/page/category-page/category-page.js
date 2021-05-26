@@ -6,7 +6,7 @@ import { collectByTags } from '../../firebase'
 
 import './category-page.css';
 
-import Item from '../../component/item/item';
+import Tile from '../../component/tile/tile';
 import HeroImage from '../../component/hero-image/hero-image';
 
 class CategoryPage extends React.Component {
@@ -35,7 +35,7 @@ class CategoryPage extends React.Component {
         let object = this.state.object;
 
         let list = Object.keys(object).map(item => {
-                return <Item
+                return <Tile
                     path={this.props.type}
                     key={item}
                     skew={object[item]['sku']}
